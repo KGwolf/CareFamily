@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view>
+  <text>家人提醒助手</text>
+  <button bindtap="addReminder">添加提醒</button>
+</view>
+
+</scroll-view>
