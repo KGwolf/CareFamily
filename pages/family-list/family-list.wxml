@@ -1,0 +1,9 @@
+<!--family-list.wxml-->
+<view class="family-list">
+  <block wx:for="{{familyList}}" wx:key="id">
+    <navigator url="/pages/family-detail/family-detail?id={{item.id}}" class="family-item">
+      <image src="{{item.avatar}}" mode="aspectFill" class="avatar"></image>
+      <text class="name">{{item.name}} ({{item.age}}岁)</text>
+    </navigator>
+  </block>
+</view>

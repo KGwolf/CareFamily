@@ -1,0 +1,8 @@
+<view class="family-list">
+  <block wx:for="{{familyMembers}}" wx:key="id">
+    <view class="member-item">
+      <text>{{item.name}} ({{item.role}})</text>
+      <text>{{item.phone}}</text>
+    </view>
+  </block>
+</view>

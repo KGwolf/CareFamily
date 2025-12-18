@@ -1,0 +1,19 @@
+/* pages/family-list/family-list.wxss */
+.family-list {
+  padding: 20rpx;
+}
+.family-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.name {
+  font-size: 32rpx;
+}

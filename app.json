@@ -1,6 +1,14 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/family-list/family-list",
+    "pages/family-detail/family-detail",
+    "pages/reminder-list/reminder-list",
+    "pages/today-progress/today-progress",
+    "pages/statistics/statistics",
+    "pages/add-reminder/add-reminder",
+    "pages/family-members/family-members",
+    "pages/mine/mine"
   ],
   "window": {
     "navigationBarTextStyle": "black",

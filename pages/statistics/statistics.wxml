@@ -1,0 +1,5 @@
+<view class="statistics">
+  <text>完成率：{{completionRate}}%</text>
+  <text>连续完成天数：{{streakDays}}天</text>
+  <text>累计提醒次数：{{totalReminders}}</text>
+</view>

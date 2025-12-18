@@ -4,6 +4,12 @@
   <view>
   <text>家人提醒助手</text>
   <button bindtap="addReminder">添加提醒</button>
+</view><!--index.wxml-->
+<view class="index">
+  <navigator url="/pages/family-list/family-list" class="btn">老人列表</navigator>
+  <navigator url="/pages/add-reminder/add-reminder" class="btn">添加提醒</navigator>
+  <navigator url="/pages/family-members/family-members" class="btn">家庭成员</navigator>
+  <navigator url="/pages/mine/mine" class="btn">我的</navigator>
 </view>
 
 </scroll-view>

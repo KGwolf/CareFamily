@@ -1,0 +1,9 @@
+<view class="detail">
+  <image src="{{family.avatar}}" mode="aspectFill" class="avatar"></image>
+  <text class="name">{{family.name}}</text>
+  <text class="age">{{family.age}}岁</text>
+
+  <navigator url="/pages/reminder-list/reminder-list?familyId={{family.id}}" class="btn">提醒事项列表</navigator>
+  <navigator url="/pages/today-progress/today-progress?familyId={{family.id}}" class="btn">今日完成情况</navigator>
+  <navigator url="/pages/statistics/statistics?familyId={{family.id}}" class="btn">查看统计（激励）</navigator>
+</view>

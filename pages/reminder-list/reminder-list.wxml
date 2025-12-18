@@ -1,0 +1,9 @@
+<view class="reminder-list">
+  <block wx:for="{{reminders}}" wx:key="id">
+    <view wx:if="{{item.familyId == familyId}}" class="reminder-item">
+      <text>{{item.content}} - {{item.time}}</text>
+      <text wx:if="{{item.status === 'completed'}}" style="color: green;">✅ 已完成</text>
+      <text wx:else style="color: red;">❌ 待完成</text>
+    </view>
+  </block>
+</view>

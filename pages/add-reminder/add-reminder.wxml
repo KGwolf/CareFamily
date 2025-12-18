@@ -1,0 +1,7 @@
+<view class="add-form">
+  <input type="text" placeholder="提醒内容" bindinput="onContentChange" />
+  <picker mode="time" bindchange="onTimeChange">
+    <text>{{selectedTime}}</text>
+  </picker>
+  <button bindtap="saveReminder">保存提醒</button>
+</view>

@@ -1,5 +1,4 @@
-/* index.wxss */
-.index {
+.mine {
   padding: 20rpx;
 }
 .btn {
@@ -10,6 +9,6 @@
   text-align: center;
   background-color: #007AFF;
   color: white;
-  margin-bottom: 20rpx;
+  margin-top: 20rpx;
   border-radius: 10rpx;
 }

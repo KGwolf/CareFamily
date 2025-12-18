@@ -1,0 +1,8 @@
+<view class="progress">
+  <text>今日完成情况</text>
+  <block wx:for="{{reminders}}" wx:key="id">
+    <view wx:if="{{item.familyId == familyId && item.date == todayDate && item.status === 'completed'}}">
+      <text>✅ {{item.content}}</text>
+    </view>
+  </block>
+</view>
