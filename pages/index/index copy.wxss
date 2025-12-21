@@ -1,0 +1,124 @@
+.container {
+  background-color: #f8f9fa;
+  padding: 30rpx;
+  color: #333;
+}
+
+/* 统计卡片 */
+.summary-card {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+.title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+}
+.stat-item {
+  text-align: center;
+  flex: 1;
+  padding: 20rpx;
+}
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-bottom: 10rpx;
+}
+.count {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #007aff;
+}
+.label {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 待执行事项 */
+.task-list {
+  background-color: white;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+
+.member-task {
+  margin-bottom: 30rpx;
+}
+
+.member-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.avatar {
+  width: 60rpx;
+  height: 60rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.name {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+.reminder-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+.time-icon {
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.time {
+  font-size: 28rpx;
+  color: #666;
+}
+.desc {
+  font-size: 28rpx;
+  flex: 1;
+  margin-left: 10rpx;
+}
+.check-box {
+  width: 50rpx;
+  height: 50rpx;
+  border: 2rpx solid #d9d9d9;
+  border-radius: 50%;
+  margin-left: 20rpx;
+}
+
+.add-reminder-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+  background-color: #e8f0ff;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  margin-top: 20rpx;
+  font-size: 28rpx;
+  color: #007aff;
+}
+.plus-icon {
+  width: 30rpx;
+  height: 30rpx;
+}
+.btn-text {
+  font-size: 28rpx;
+}

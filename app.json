@@ -23,7 +23,7 @@
         "selectedIconPath": "/images/home-active.png"
       },
       {
-        "pagePath": "pages/family/family",
+        "pagePath": "pages/family-list/family-list",
         "text": "家人",
         "iconPath": "/images/people.png",
         "selectedIconPath": "/images/people-active.png"
