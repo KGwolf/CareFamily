@@ -1,15 +1,19 @@
 <!--index.wxml-->
-<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view>
-  <text>家人提醒助手</text>
-  <button bindtap="addReminder">添加提醒</button>
-</view><!--index.wxml-->
-<view class="index">
-  <navigator url="/pages/family-list/family-list" class="btn">老人列表</navigator>
+
+<view class="page">
+  <!-- <view
+  class="header"
+  style="padding-top: {{statusBarHeight}}px"
+>
+  <text class="title">关爱家人小助手</text>
+</view> -->
+<navigation-bar title="关爱家人小助手" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+
+<scroll-view class="content" scroll-y>
+  <navigator url="/pages/family-list/family-list" class="btn">家人列表</navigator>
   <navigator url="/pages/add-reminder/add-reminder" class="btn">添加提醒</navigator>
   <navigator url="/pages/family-members/family-members" class="btn">家庭成员</navigator>
   <navigator url="/pages/mine/mine" class="btn">我的</navigator>
-</view>
-
 </scroll-view>
+
+</view>

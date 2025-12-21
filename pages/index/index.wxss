@@ -1,6 +1,6 @@
 /* index.wxss */
-.index {
-  padding: 20rpx;
+.content {
+  padding-top: 20rpx;
 }
 .btn {
   display: block;
@@ -13,3 +13,4 @@
   margin-bottom: 20rpx;
   border-radius: 10rpx;
 }
+

@@ -1,4 +1,5 @@
 <!--family-list.wxml-->
+<navigation-bar title="关爱家人小助手" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 <view class="family-list">
   <block wx:for="{{familyList}}" wx:key="id">
     <navigator url="/pages/family-detail/family-detail?id={{item.id}}" class="family-item">
