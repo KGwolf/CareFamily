@@ -1,3 +1,4 @@
+<navigation-bar title="家人详情" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 <view class="detail">
   <image src="{{family.avatar}}" mode="aspectFill" class="avatar"></image>
   <text class="name">{{family.name}}</text>

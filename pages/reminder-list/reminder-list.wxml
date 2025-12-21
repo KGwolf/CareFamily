@@ -1,3 +1,4 @@
+<navigation-bar title="提醒详细" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 <view class="reminder-list">
   <block wx:for="{{reminders}}" wx:key="id">
     <view wx:if="{{item.familyId == familyId}}" class="reminder-item">

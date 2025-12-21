@@ -3,9 +3,7 @@ Page({
     statusBarHeight: 0
   },
   onLoad() {
-    const sys = wx.getSystemInfoSync()
-    this.setData({
-      statusBarHeight: sys.statusBarHeight
-    })
+    const { statusBarHeight } = wx.getWindowInfo()
+    this.setData({ statusBarHeight })
   }
 })

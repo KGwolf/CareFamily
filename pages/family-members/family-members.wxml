@@ -1,3 +1,4 @@
+<navigation-bar title="家庭成员" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 <view class="family-list">
   <block wx:for="{{familyMembers}}" wx:key="id">
     <view class="member-item">
