@@ -1,19 +1,53 @@
-<!--index.wxml-->
-
-<view class="page">
-  <!-- <view
-  class="header"
-  style="padding-top: {{statusBarHeight}}px"
->
-  <text class="title">关爱家人小助手</text>
-</view> -->
 <navigation-bar title="关爱家人小助手" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 
-<scroll-view class="content" scroll-y>
-  <navigator url="/pages/family-list/family-list" class="btn">家人列表</navigator>
-  <navigator url="/pages/add-reminder/add-reminder" class="btn">添加提醒</navigator>
-  <navigator url="/pages/family-members/family-members" class="btn">家庭成员</navigator>
-  <navigator url="/pages/mine/mine" class="btn">我的</navigator>
-</scroll-view>
+<view class="container">
+  <!-- 顶部统计卡片 -->
+  <view class="summary-card">
+    <text class="title">今天 · 家庭关怀</text>
+    <view class="stats-row">
+      <view class="stat-item">
+        <image src="/images/people.png" class="icon" />
+        <text class="count">2</text>
+        <text class="label">位家人</text>
+      </view>
+      <view class="stat-item">
+        <image src="/images/todo.png" class="icon" />
+        <text class="count">5</text>
+        <text class="label">项待执行</text>
+      </view>
+      <view class="stat-item">
+        <image src="/images/check.png" class="icon" />
+        <text class="count">1</text>
+        <text class="label">项已完成</text>
+      </view>
+    </view>
+  </view>
 
+  <!-- 待执行事项 -->
+  <view class="task-list">
+    <text class="section-title">待执行事项</text>
+
+    <block wx:for="{{familyMembers}}" wx:key="id">
+      <view class="member-task">
+        <view class="member-header">
+          <image src="{{item.avatar}}" class="avatar" />
+          <text class="name">{{item.name}} ({{item.age}}岁)</text>
+        </view>
+
+        <block wx:for="{{item.reminders}}" wx:key="id">
+          <view class="reminder-item">
+            <image src="/images/clock.png" class="time-icon" />
+            <text class="time">{{item.time}}</text>
+            <text class="desc">{{item.desc}}</text>
+            <checkbox value="{{item.completed}}" class="check-box" bindchange="toggleCompleted" data-index="{{index}}" data-member="{{index}}" />
+          </view>
+        </block>
+      </view>
+    </block>
+
+    <navigator url="/pages/add-reminder/add-reminder" class="add-reminder-btn">
+      <image src="/images/plus.png" class="plus-icon" />
+      <text class="btn-text">添加家人提醒</text>
+    </navigator>
+  </view>
 </view>

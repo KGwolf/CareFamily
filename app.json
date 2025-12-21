@@ -14,6 +14,34 @@
     "navigationBarTextStyle": "black",
     "navigationStyle": "custom"
   },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "今日",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "/images/home-active.png"
+      },
+      {
+        "pagePath": "pages/family/family",
+        "text": "家人",
+        "iconPath": "/images/people.png",
+        "selectedIconPath": "/images/people-active.png"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "text": "关怀",
+        "iconPath": "/images/chart.png",
+        "selectedIconPath": "/images/chart-active.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "/images/user.png",
+        "selectedIconPath": "/images/user-active.png"
+      }
+    ]
+  },
   "style": "v2",
   "renderer": "skyline",
   "rendererOptions": {
