@@ -6,7 +6,7 @@
   <view class="content-wrap">
     <!-- 顶部家庭关怀卡片 -->
     <view class="top-card">
-      <text class="card-title">今天·家庭关怀</text>
+      <text class="card-title">今日·家庭关怀</text>
       <view class="stats-row">
         <view class="stat-item">
           <image class="stat-img" src="/images/family.png" mode="aspectFit"></image>
@@ -28,10 +28,12 @@
         </view>
       </view>
     </view>
-
+    <text class="section-title">今日·待执行事项</text>
     <!-- 待执行事项区域 -->
-    <view class="task-section">
-      <text class="section-title">待执行事项</text>
+    <view class="task-section"  bindtouchstart="handleTaskTouchStart"
+    bindtouchmove="handleTaskTouchMove"
+    bindtouchend="handleTaskTouchEnd">
+      
       <!-- 妈妈的事项卡片 -->
       <view class="task-card">
         <view class="card-header">
@@ -164,10 +166,10 @@
     </view>
 
     <!-- 添加提醒按钮 -->
-    <button class="add-btn" bindtap="addReminder">
+    <!-- <button class="add-btn" bindtap="addReminder">
       <image class="icon-plus" src="/images/plus.png" mode="aspectFit"></image>
       <text class="btn-text">添加家人提醒</text>
-    </button>
+    </button> -->
   </view>
 
   <!-- 底部导航栏 -->

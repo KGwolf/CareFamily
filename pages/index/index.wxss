@@ -6,8 +6,15 @@ page {
 
 /* 页面容器 */
 .page-container {
-  min-height: 100vh;
+  width: 100%;
+  /* 页面高度占满屏幕，排除导航栏高度，配合 flex 布局 */
+  height: 100vh;
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: #f8f8f8;
+  display: flex;
+  flex-direction: column;
 }
 
 /* 状态栏占位 */
@@ -16,56 +23,64 @@ page {
   width: 100%;
 }
 
-/* 主内容区 */
+/* 主内容区：自适应剩余高度，内部用 flex 垂直布局 */
 .content-wrap {
-  padding: 20rpx 24rpx;
+  flex: 1; /* 填满 page-container 除了顶部 navigation-bar 的剩余空间 */
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  /* 关键：避免 content-wrap 自身滚动，让 task-section 单独滚动 */
+  overflow: hidden;
+}
+
+/* 顶部卡片：固定高度，不参与自适应 */
+.top-card {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.08);
+  margin-bottom: 20rpx;
   box-sizing: border-box;
 }
 
-/* 顶部卡片 */
-.top-card {
-  background-color: #FFFFFF;
-  border-radius: 16rpx;
-  padding: 24rpx;
-  margin-bottom: 24rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
-}
-
+/* 顶部卡片内部样式（保持原有样式不变，仅补充） */
 .card-title {
   font-size: 32rpx;
-  font-weight: 600;
-  color: #333333;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
   display: block;
-  margin-bottom: 28rpx;
 }
-
 .stats-row {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  justify-content: space-between;
 }
-
 .stat-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
-
 .stat-img {
-  width: 64rpx;
-  height: 64rpx;
-  margin-bottom: 12rpx;
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
 }
-
+.stat-text {
+  font-size: 24rpx;
+  color: #666;
+}
 .stat-num-wrap {
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
-
 .stat-num {
-  font-size: 36rpx;
-  font-weight: 600;
-  margin-right: 8rpx;
+  font-size: 28rpx;
+  color: #e63946;
+  font-weight: bold;
+  margin-right: 5rpx;
 }
 
 /* 待执行数字颜色 */
@@ -83,58 +98,70 @@ page {
   color: #666666;
 }
 
-/* 事项区域 */
+/* 待执行事项区域：核心配置 */
 .task-section {
-  margin-bottom: 32rpx;
+  /* 关键1：flex:1 自动填充 content-wrap 顶部卡片和底部按钮之间的剩余高度 */
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  /* 关键2：overflow-y: auto 开启垂直滚动，内容超出时可滑动 */
+  overflow-y: auto;
+  /* 隐藏滚动条（可选，优化视觉体验） */
+  -webkit-overflow-scrolling: touch; /* 开启IOS弹性滚动，提升流畅度 */
+  scrollbar-width: none; /* 火狐隐藏滚动条 */
+}
+/* 微信小程序隐藏滚动条（兼容安卓/IOS） */
+.task-section::-webkit-scrollbar {
+  display: none;
 }
 
+
+/* task-section 内部样式（保持原有样式不变，仅补充） */
 .section-title {
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #333333;
-  display: block;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
   margin-bottom: 20rpx;
+  display: block;
+  margin-left: 22rpx;
 }
 
 /* 事项卡片 */
 .task-card {
-  background-color: #FFFFFF;
-  border-radius: 16rpx;
-  padding: 24rpx;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 1rpx 5rpx rgba(0,0,0,0.06);
+  padding: 20rpx;
   margin-bottom: 20rpx;
-  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
 }
 
 .card-header {
   display: flex;
   align-items: center;
-  margin-bottom: 24rpx;
-  padding-bottom: 20rpx;
-  border-bottom: 1rpx solid #F0F0F0;
+  margin-bottom: 20rpx;
 }
 
 .avatar {
-  width: 68rpx;
-  height: 68rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 50%;
   margin-right: 20rpx;
 }
-
 .name-wrap {
   display: flex;
   align-items: center;
 }
-
 .name-text {
-  font-size: 30rpx;
-  font-weight: 600;
-  color: #333333;
-  margin-right: 12rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10rpx;
 }
-
 .age-text {
   font-size: 24rpx;
-  color: #999999;
+  color: #999;
 }
 
 /* 事项列表 */
@@ -146,7 +173,8 @@ page {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24rpx;
+  padding: 15rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
 }
 
 .task-item:last-child {
@@ -154,20 +182,20 @@ page {
 }
 
 .icon-clock {
-  width: 32rpx;
-  height: 32rpx;
-  margin-right: 16rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
 }
 
 .time-text {
   font-size: 26rpx;
-  color: #666666;
-  width: 100rpx;
+  color: #999;
+  margin-right: 15rpx;
+  width: 120rpx;
 }
-
 .task-text {
   font-size: 28rpx;
-  color: #333333;
+  color: #333;
   flex: 1;
 }
 
@@ -190,35 +218,31 @@ checkbox[checked] {
   background-position: center;
 }
 
-/* 添加按钮 */
+/* 添加按钮：固定在 content-wrap 底部，不参与滚动 */
 .add-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  background-color: #42b983;
+  color: #fff;
+  border-radius: 12rpx;
+  border: none;
+  font-size: 30rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 88rpx;
-  background-color: #E8F5FF;
-  color: #1677FF;
-  font-size: 30rpx;
-  border-radius: 12rpx;
-  border: none;
-  padding: 0;
-  margin-bottom: 100rpx;
+  margin-top: 20rpx;
+  /* 避免按钮被 task-section 滚动遮挡 */
+  position: relative;
+  z-index: 10;
 }
-
-.add-btn::after {
-  border: none;
-}
-
 .icon-plus {
-  width: 32rpx;
-  height: 32rpx;
-  margin-right: 12rpx;
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
 }
-
 .btn-text {
   font-size: 30rpx;
-  font-weight: 500;
 }
 
 /* 底部导航栏 */
