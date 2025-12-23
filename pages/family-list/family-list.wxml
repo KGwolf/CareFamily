@@ -8,3 +8,12 @@
     </navigator>
   </block>
 </view>
+<!-- WXML：自定义按钮 -->
+<view 
+  class="my-custom-btn {{btnDisabled ? 'disabled' : ''}}" 
+  bindtap="handleMyBtnClick"
+>
+  <image class="btn-icon" src="/images/plus.png" mode="aspectFit"></image>
+  <text class="btn-text">添加家人提醒</text>
+</view>
+   

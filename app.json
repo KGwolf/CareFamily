@@ -8,7 +8,8 @@
     "pages/statistics/statistics",
     "pages/add-reminder/add-reminder",
     "pages/family-members/family-members",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/add-family/add-family"
   ],
   "window": {
     "navigationBarTextStyle": "black",

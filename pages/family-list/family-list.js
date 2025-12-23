@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    familyList: []
+    familyList: [],
+    btnDisabled: false // 按钮禁用状态
   },
 
   /**
@@ -16,53 +17,16 @@ Page({
       familyList: wx.getStorageSync('familyList') || []
     });
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  handleMyBtnClick() {
+    wx.navigateTo({
+      url: '/pages/add-family/add-family' // 替换为你的添加家人页面路径
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
+  // 可选：页面显示时刷新数据（防止返回时数据未更新）
   onShow() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+    const cacheFamilyList = wx.getStorageSync('familyList') || [];
+    this.setData({
+      familyList: cacheFamilyList
+    });
   }
 })

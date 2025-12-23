@@ -1,0 +1,73 @@
+
+  <!-- 顶部状态栏占位（适配小程序胶囊） -->
+  <navigation-bar id="navigationBar" title="添加家人信息" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<!-- pages/add-family/add-family.wxml -->
+<view class="page-container">
+  <!-- 自定义导航栏 -->
+  
+
+  <!-- 表单区域 -->
+  <view class="form-content">
+    <!-- 姓名输入项 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">家人姓名</text>
+        <text class="required">*</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="请输入家人姓名（如：妈妈、张三）"
+        placeholder-class="placeholder-style"
+        value="{{name}}"
+        bindinput="onNameInput"
+      />
+    </view>
+
+    <!-- 年龄输入项 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">家人年龄</text>
+        <text class="required">*</text>
+      </view>
+      <input 
+        class="form-input" 
+        type="number"
+        placeholder="请输入有效年龄（如：72）"
+        placeholder-class="placeholder-style"
+        value="{{age}}"
+        bindinput="onAgeInput"
+      />
+    </view>
+
+    <!-- 性别选择项 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">家人性别</text>
+        <text class="required">*</text>
+      </view>
+      <view class="gender-select">
+        <view 
+          class="gender-item {{gender === 'male' ? 'active' : ''}}"
+          bindtap="selectGender"
+          data-type="male"
+        >
+          <text class="gender-text">男</text>
+        </view>
+        <view 
+          class="gender-item {{gender === 'female' ? 'active' : ''}}"
+          bindtap="selectGender"
+          data-type="female"
+        >
+          <text class="gender-text">女</text>
+        </view>
+      </view>
+    </view>
+    <!-- 底部保存按钮 -->
+  <view class="save-btn-wrap">
+    <button class="save-btn" bindtap="saveFamilyInfo">保存信息</button>
+  </view>
+  </view>
+
+  
+</view>
