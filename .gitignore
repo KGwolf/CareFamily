@@ -1,0 +1,8 @@
+# 忽略npm依赖目录
+node_modules/
+# 忽略小程序NPM编译产物
+miniprogram_npm/
+# 可选：忽略Git日志、编辑器配置等冗余文件
+.gitlog
+.vscode/
+*.log

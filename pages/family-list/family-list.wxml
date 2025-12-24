@@ -1,19 +1,63 @@
-<!--family-list.wxml-->
-<navigation-bar title="关爱家人小助手" back="{{true}}" color="black" background="#FFF"></navigation-bar>
-<view class="family-list">
-  <block wx:for="{{familyList}}" wx:key="id">
-    <navigator url="/pages/family-detail/family-detail?id={{item.id}}" class="family-item">
-      <image src="{{item.avatar}}" mode="aspectFill" class="avatar"></image>
-      <text class="name">{{item.name}} ({{item.age}}岁)</text>
-    </navigator>
-  </block>
+<navigation-bar title="我的家人" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<!-- 页面容器 -->
+<view class="page-container">
+  <!-- 顶部信息栏 -->
+  <view class="top-bar">
+    <text class="page-title">我的家人</text>
+    <text class="family-count">共 {{familyList.length}} 位家人</text>
+  </view>
+
+  <!-- 家人列表容器 -->
+  <view class="family-list">
+    <!-- 家人卡片（循环渲染 + 滑动事件） -->
+    <block wx:for="{{familyList}}" wx:key="id">
+      <van-swipe-cell right-width="{{270}}" bind:close="onSwipeClose" >
+        <view class="slide-wrap" data-index="{{index}}">
+          <!-- 家人卡片（主内容，绑定触摸事件） -->
+          <view 
+            class="family-card"
+            style="transform: translateX({{slideOffset[index]}}rpx)"
+            data-index="{{index}}"
+          >
+            <!-- 头像（默认占位+性别区分） -->
+            <view class="avatar-wrap" style="background-color: {{item.gender === '男' ? '#e1f5fe' : '#ffebee'}}">
+              <text class="avatar-text">{{item.name[0]}}</text>
+            </view>
+            <!-- 信息区域 -->
+            <view class="info-wrap">
+              <text class="family-name">{{item.name}}</text>
+              <view class="sub-info">
+                <text class="age-text">{{item.age}}岁</text>
+                <text class="relation-tag">{{item.relation || (item.gender === '男' ? '长辈' : '长辈')}}</text>
+              </view>
+            </view>
+            <!-- 滑动提示箭头 -->
+            <view class="slide-arrow">
+              <icon type="arrowright" size="20" color="#ccc"></icon>
+            </view>
+          </view>
+        </view>
+
+        <!-- 右侧按钮区（左滑时露出） -->
+        <view slot="right" class="swipe-btn-wrapper">
+            <button class="btn edit" bindtap="handleEdit" data-item="{{item}}">编辑</button>
+            <button class="btn remind" bindtap="handleRemind" data-item="{{item}}">添加提醒</button>
+            <button class="btn delete" bindtap="handleDelete" data-item="{{item}}">删除</button>
+        </view>
+      </van-swipe-cell>
+    </block>
+
+    <!-- 空列表提示（无家人时显示） -->
+    <block wx:if="{{familyList.length === 0}}">
+      <view class="empty-tip">
+        <image class="empty-icon" src="/images/empty_family.png" mode="aspectFit"></image>
+        <text class="empty-text">还没有添加家人哦</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 悬浮添加按钮 -->
+  <view class="add-btn" bindtap="handleAddFamily">
+    <text class="add-btn-text">+</text>
+  </view>
 </view>
-<!-- WXML：自定义按钮 -->
-<view 
-  class="my-custom-btn {{btnDisabled ? 'disabled' : ''}}" 
-  bindtap="handleMyBtnClick"
->
-  <image class="btn-icon" src="/images/plus.png" mode="aspectFit"></image>
-  <text class="btn-text">添加家人提醒</text>
-</view>
-   

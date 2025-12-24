@@ -63,10 +63,27 @@
         </view>
       </view>
     </view>
+
+<!-- 备注 -->
+<view class="form-item">
+      <view class="form-label">
+        <text class="label-text">备注</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="请输入备注信息"
+        placeholder-class="placeholder-style"
+        value="{{remark}}"
+        bindinput="onRemarkInput"
+      />
+    </view>
+
     <!-- 底部保存按钮 -->
-  <view class="save-btn-wrap">
-    <button class="save-btn" bindtap="saveFamilyInfo">保存信息</button>
-  </view>
+    <app-button
+  text="保存"
+  type="primary"
+  bind:tap="saveFamilyInfo"
+/>
   </view>
 
   

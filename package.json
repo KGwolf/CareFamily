@@ -1,0 +1,24 @@
+{
+  "name": "CareFamily",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KGwolf/CareFamily.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KGwolf/CareFamily/issues"
+  },
+  "homepage": "https://github.com/KGwolf/CareFamily#readme",
+  "dependencies": {
+    "vant-weapp": "^0.5.29",
+    "weui-miniprogram": "^1.5.6"
+  }
+}

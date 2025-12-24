@@ -1,0 +1,8 @@
+<view
+  class="btn btn--{{type}} {{block ? 'btn--block' : ''}} {{disabled ? 'btn--disabled' : ''}}"
+  bindtap="onTap"
+>
+  <text wx:if="{{!loading}}">{{text}}</text>
+
+  <view wx:if="{{loading}}" class="loading"></view>
+</view>

@@ -39,6 +39,44 @@ page {
   width: 100%;
   height: 140rpx; /* 与卡片高度一致 */
   margin-bottom: 20rpx;
+  overflow: hidden; /* 隐藏超出容器的内容 */
+  transform: translateZ(0); /* 开启硬件加速，提升滑动流畅度 */
+}
+
+/* 操作栏：关键优化：固定宽度（确保按钮完整显示） */
+.action-bar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: flex;
+  z-index: 1;
+  width: 390rpx; /* 增加宽度，确保三个按钮完整显示（每个按钮130rpx） */
+}
+.action-btn {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 25rpx;
+  box-sizing: border-box;
+  flex: 1; /* 三个按钮平分宽度 */
+  min-width: 130rpx; /* 固定最小宽度，防止按钮挤压 */
+}
+.action-btn.edit {
+  background-color: #1890ff; /* 编辑：蓝色 */
+}
+.action-btn.add-tip {
+  background-color: #42b983; /* 添加提醒：绿色 */
+}
+.action-btn.delete {
+  background-color: #e63946; /* 删除：红色 */
+}
+.action-text {
+  font-size: 28rpx;
+  color: #fff;
+  white-space: nowrap;
+  text-align: center;
 }
 
 /* 家人卡片：关键优化：统一rpx单位 + 更顺滑的过渡 */
@@ -56,6 +94,15 @@ page {
   box-sizing: border-box;
   box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.04);
   z-index: 2;
+  /* 优化过渡：使用transform + opacity，开启硬件加速，更顺滑 */
+  transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+  transform: translateZ(0); /* 硬件加速 */
+}
+/* 点击态兼容滑动偏移，不卡顿 */
+.family-card:active {
+  transform: scale(0.99) translateX(var(--slide-offset, 0rpx));
+  box-shadow: 0 1rpx 6rpx rgba(0, 0, 0, 0.03);
+  transition: transform 0.1s ease;
 }
 
 /* 头像占位 */
@@ -101,7 +148,10 @@ page {
   margin-left: 12rpx;
 }
 
-
+/* 滑动提示箭头 */
+.slide-arrow {
+  color: #ccc;
+}
 
 /* 空列表提示 */
 .empty-tip {
@@ -136,8 +186,8 @@ page {
   box-shadow: 0 4rpx 16rpx rgba(66, 185, 131, 0.3);
   transition: all 0.2s ease;
   z-index: 10;
+  transform: translateZ(0); /* 硬件加速 */
 }
-
 .add-btn:active {
   transform: scale(0.95);
   background-color: #359469;
@@ -147,39 +197,3 @@ page {
   color: #fff;
   line-height: 96rpx;
 }
-
-
-/* 左滑按钮区（横向排列） */
-/* 穿透Vant组件的shadow-root，强制按钮容器横向 */
-.van-swipe-cell__right {
-  display: flex !important;
-  flex-direction: row !important;
-  height: 120rpx !important;
-}
-
-/* 按钮容器：强制横向 */
-.swipe-btn-wrapper {
-  display: flex !important;
-  flex-direction: row !important;
-  height: 100% !important;
-}
-
-/* 按钮本身：最终样式 */
-.swipe-btn-wrapper .btn {
-  width: 140rpx !important;
-  height: 100% !important;
-  font-size: 24rpx !important;
-  line-height: 120rpx !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  color: #fff !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-/* 按钮颜色 */
-.btn.edit { background-color: #666 !important; }
-.btn.remind { background-color: #07c160 !important; }
-.btn.delete { background-color: #f53f3f !important; }

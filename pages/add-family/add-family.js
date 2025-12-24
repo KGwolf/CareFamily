@@ -3,6 +3,7 @@ Page({
   data: {
     name: '',        // 家人姓名
     age: '',         // 家人年龄
+    remark: '',      //备注
     gender: ''       // 家人性别（male/ female）
   },
 
@@ -25,6 +26,13 @@ Page({
     });
   },
 
+    // 监听备注输入
+    onRemarkInput(e) {
+      this.setData({
+        remark: e.detail.value.trim()
+      });
+    },
+
   // 监听年龄输入
   onAgeInput(e) {
     this.setData({
@@ -34,6 +42,7 @@ Page({
 
   // 选择性别
   selectGender(e) {
+    
     const genderType = e.currentTarget.dataset.type;
     this.setData({
       gender: genderType
@@ -42,7 +51,7 @@ Page({
 
   // 保存家人信息
   saveFamilyInfo() {
-    const { name, age, gender } = this.data;
+    const { name, age,remark, gender } = this.data;
 
     // 表单校验
     if (!name) {
@@ -83,12 +92,14 @@ Page({
     const familyInfo = {
       id: Date.now(), // 时间戳作为唯一标识
       name: name,
+      remark: remark,
       age: ageNum,
       gender: gender === 'male' ? '男' : '女', // 转换为中文显示
       genderKey: gender // 保留标识用于后续判断
     };
 
     // 方案：存入本地缓存（持久化，返回列表页自动刷新）
+
     const familyList = wx.getStorageSync('familyList') || [];
     familyList.push(familyInfo);
     wx.setStorageSync('familyList', familyList);
@@ -97,11 +108,11 @@ Page({
     wx.showToast({
       title: '添加成功',
       icon: 'success',
-      duration: 1500
+      duration: 1000
     });
 
     setTimeout(() => {
       this.goBack();
-    }, 1500);
+    }, 1000);
   }
 });

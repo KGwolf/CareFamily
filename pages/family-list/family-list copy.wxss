@@ -1,0 +1,72 @@
+/* pages/family-list/family-list.wxss */
+.family-list {
+  padding: 20rpx;
+}
+.family-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #eee;
+}
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.name {
+  font-size: 32rpx;
+}
+
+
+
+
+/* 自定义按钮核心样式 */
+.my-custom-btn {
+  /* 按钮基础样式 */
+  width: 100%;
+  height: 88rpx;
+  background-color: #42b983; /* 背景色 */
+  border-radius: 12rpx; /* 圆角 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+  /* 禁止文本选中 */
+  user-select: none;
+  /* 长按禁止弹出菜单 */
+  -webkit-touch-callout: none;
+  /* 阴影效果（提升质感） */
+  box-shadow: 0 2rpx 8rpx rgba(66, 185, 131, 0.3);
+}
+
+/* 按钮图标 */
+.btn-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
+}
+
+/* 按钮文字 */
+.btn-text {
+  font-size: 30rpx;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* 点击态效果（模拟按钮按下反馈） */
+.my-custom-btn:active {
+  background-color: #359469; /* 按下后背景色变深 */
+  box-shadow: 0 1rpx 4rpx rgba(66, 185, 131, 0.5); /* 按下后阴影变小 */
+  transform: scale(0.98); /* 轻微缩放，增强交互感 */
+}
+
+/* 禁用状态（可选） */
+.my-custom-btn.disabled {
+  background-color: #cccccc;
+  box-shadow: none;
+}
+.my-custom-btn.disabled:active {
+  transform: none; /* 禁用状态取消点击缩放 */
+}
