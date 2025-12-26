@@ -12,7 +12,7 @@
     <!-- 家人卡片（循环渲染 + 滑动事件） -->
     <block wx:for="{{familyList}}" wx:key="id">
       <van-swipe-cell right-width="{{270}}" bind:close="onSwipeClose" >
-        <view class="slide-wrap" data-index="{{index}}">
+        <view class="slide-wrap" data-index="{{index}}" bindtap="handleGoFamilyDetail" data-item="{{item}}">
           <!-- 家人卡片（主内容，绑定触摸事件） -->
           <view 
             class="family-card"
@@ -40,9 +40,9 @@
 
         <!-- 右侧按钮区（左滑时露出） -->
         <view slot="right" class="swipe-btn-wrapper">
-            <button class="btn edit" bindtap="handleEdit" data-item="{{item}}">编辑</button>
+            <button class="btn edit" bindtap="handleEdit" data-item="{{item}}">编辑家人</button>
             <button class="btn remind" bindtap="handleRemind" data-item="{{item}}">添加提醒</button>
-            <button class="btn delete" bindtap="handleDelete" data-item="{{item}}">删除</button>
+            <button class="btn delete" bindtap="handleDelete" data-item="{{item}}">删除家人</button>
         </view>
       </van-swipe-cell>
     </block>

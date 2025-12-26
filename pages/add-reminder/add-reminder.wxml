@@ -1,9 +1,74 @@
 <navigation-bar title="添加提醒" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 
-<view class="add-form">
-  <input type="text" placeholder="提醒内容" bindinput="onContentChange" />
-  <picker mode="time" bindchange="onTimeChange">
-    <text>{{selectedTime}}</text>
-  </picker>
-  <button bindtap="saveReminder">保存提醒</button>
+<view class="reminder-page">
+  <!-- 表单容器 -->
+  <view class="form-container">
+    <!-- 提醒对象（已从参数获取，不可修改） -->
+    <view class="form-item">
+      <view class="form-label">提醒对象</view>
+      <view class="form-value family-value">
+        <view class="family-avatar" style="background-color: {{familyGender === '男' ? '#e1f5fe' : '#ffebee'}}">
+          <text>{{familyName[0]}}</text>
+        </view>
+        <view class="family-name">{{familyName}}</view>
+      </view>
+    </view>
+
+    <!-- 提醒时间选择 -->
+    <view class="form-item">
+      <view class="form-label">提醒时间</view>
+      <picker mode="time" bindchange="onTimeChange" class="form-picker">
+        <view class="form-value {{!selectedTime ? 'placeholder' : ''}}">
+          {{selectedTime || '请选择具体提醒时间（如：08:30）'}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 提醒频率设置 -->
+    <view class="form-item">
+      <view class="form-label">提醒频率</view>
+      <view class="frequency-list">
+        <view 
+          class="frequency-item {{selectedFrequency === item.value ? 'active' : ''}}"
+          wx:for="{{frequencyOptions}}"
+          wx:key="value"
+          bindtap="onFrequencySelect"
+          data-value="{{item.value}}"
+        >
+          {{item.label}}
+        </view>
+      </view>
+
+      <!-- 自定义日期（仅频率为“指定日期”时显示） -->
+      <picker 
+        mode="date" 
+        bindchange="onCustomDateChange" 
+        class="form-picker custom-date-picker"
+        wx:if="{{selectedFrequency === 'custom'}}"
+      >
+        <view class="form-value {{!customDate ? 'placeholder' : ''}}">
+          选定日期：{{customDate || '请选择具体日期'}}
+        </view>
+      </picker>
+    </view>
+
+    <!-- 提醒内容输入 -->
+    <view class="form-item">
+      <view class="form-label">提醒内容</view>
+      <textarea 
+        class="content-textarea"
+        placeholder="请输入提醒详情（如：按时服用降压药、记得喝牛奶）"
+        bindinput="onContentInput"
+        value="{{reminderContent}}"
+      ></textarea>
+    </view>
+     <!-- 底部保存按钮 -->
+ <app-button
+  text="保存"
+  type="primary"
+  bind:tap="handleSaveReminder"
+/>
+  </view>
+
+
 </view>

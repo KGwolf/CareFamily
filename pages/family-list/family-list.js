@@ -1,14 +1,31 @@
 Page({
   data: {
     familyList: [],
-    
+    slideOffset: [] // 存储每个卡片的滑动偏移量（负数表示左滑，显示操作栏）
   },
-
+// 封装刷新方法，供当前页主动调用
+loadFamilyList() {
+  const newList  = wx.getStorageSync('familyList') || [];
+  this.setData({
+    familyList: newList
+  });
+},
+// 点击卡片：跳转家人详情页（完整功能）
+handleGoFamilyDetail(e) {
+  debugger;
+  const item = e.currentTarget.dataset.item;
+  wx.showToast({ title: `点击家人：${item.name}` });
+  // wx.navigateTo({
+  //   url: `/pages/family-detail/family-detail?familyId=${item.id}&familyName=${encodeURIComponent(item.name)}&age=${item.age}&gender=${item.gender}&relation=${encodeURIComponent(item.relation)}`
+  // });
+},
   onLoad() {
     // 从缓存获取家人列表
     const cacheFamilyList = wx.getStorageSync('familyList') || [];
+    const slideOffset = cacheFamilyList.map(() => 0);
     this.setData({ 
-      familyList: cacheFamilyList
+      familyList: cacheFamilyList,
+      slideOffset
     });
   },
 
@@ -23,8 +40,11 @@ Page({
  
    // 添加提醒按钮点击
    handleRemind(e) {
-     const item = e.currentTarget.dataset.item;
-     wx.showToast({ title: `给${item.name}添加提醒` });
+     const familyItem = e.currentTarget.dataset.item;
+      // 跳转到添加提醒页面，携带家人信息
+    wx.navigateTo({
+      url: `/pages/add-reminder/add-reminder?familyId=${familyItem.id}&familyName=${familyItem.name}`
+    });
    },
  
    // 删除按钮点击

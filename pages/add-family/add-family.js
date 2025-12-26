@@ -14,9 +14,20 @@ Page({
 
   // 返回上一页
   goBack() {
-    wx.navigateBack({
-      delta: 1
-    });
+      // 1. 获取页面栈，找到上一页实例
+  const pages = getCurrentPages();
+  if (pages.length < 2) return; // 避免页面栈不足
+  const prevPage = pages[pages.length - 2]; // 上一页实例
+
+  // 2. 主动调用上一页的刷新方法（上一页需提前封装）
+  if (prevPage.loadFamilyList) {
+    prevPage.loadFamilyList(); // 直接执行上一页的刷新逻辑
+  }
+
+  // 3. 再返回上一页
+  wx.navigateBack({
+    delta: 1
+  });
   },
 
   // 监听姓名输入

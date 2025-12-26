@@ -1,0 +1,9 @@
+<navigation-bar title="添加提醒" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+
+<view class="add-form">
+  <input type="text" placeholder="提醒内容" bindinput="onContentChange" />
+  <picker mode="time" bindchange="onTimeChange">
+    <text>{{selectedTime}}</text>
+  </picker>
+  <button bindtap="saveReminder">保存提醒</button>
+</view>
