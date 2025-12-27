@@ -1,5 +1,8 @@
+const { ReminderStatus } = require('../../constants/ReminderStatusEnum.js');
+const timeUtil = require('../../utils/dateUtil.js');
 Page({
   data: {
+    ReminderStatus:ReminderStatus,
     // 从家人列表传递的参数
     familyId: '',
     familyName: '',
@@ -84,7 +87,9 @@ Page({
       remindTime: selectedTime,
       frequency: selectedFrequency,
       customDate: selectedFrequency === 'custom' ? customDate : '',
-      content: reminderContent
+      content: reminderContent,
+      status: ReminderStatus.WaitDeal,
+      createDate: timeUtil.formatTime()
     };
 
     console.log('保存的提醒数据：', reminderData);
