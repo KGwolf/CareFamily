@@ -1,53 +1,172 @@
-<navigation-bar id="navigationBar" title="关爱家人小助手" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<view class="page-container">
+  <!-- 顶部状态栏占位（适配小程序胶囊） -->
+  <navigation-bar id="navigationBar" title="关爱家人小助手" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 
-<view class="container" style="height: calc(100vh - {{navHeight}}px);">
-  <!-- 顶部统计卡片 -->
-  <view class="summary-card">
-    <text class="title">今天 · 家庭关怀</text>
-    <view class="stats-row">
-      <view class="stat-item">
-        <image src="/images/people.png" class="icon" />
-        <text class="count">2</text>
-        <text class="label">位家人</text>
-      </view>
-      <view class="stat-item">
-        <image src="/images/todo.png" class="icon" />
-        <text class="count">5</text>
-        <text class="label">项待执行</text>
-      </view>
-      <view class="stat-item">
-        <image src="/images/check.png" class="icon" />
-        <text class="count">1</text>
-        <text class="label">项已完成</text>
+  <!-- 主内容区 -->
+  <view class="content-wrap">
+    <!-- 顶部家庭关怀卡片 -->
+    <view class="top-card">
+      <text class="card-title">今日·家庭关怀</text>
+      <view class="stats-row">
+        <view class="stat-item">
+          <image class="stat-img" src="/images/family.png" mode="aspectFit"></image>
+          <text class="stat-text">2位家人</text>
+        </view>
+        <view class="stat-item">
+          <image class="stat-img" src="/images/todo.png" mode="aspectFit"></image>
+          <view class="stat-num-wrap">
+            <text class="stat-num">5</text>
+            <text class="stat-text">项待执行</text>
+          </view>
+        </view>
+        <view class="stat-item">
+          <image class="stat-img" src="/images/done.png" mode="aspectFit"></image>
+          <view class="stat-num-wrap">
+            <text class="stat-num">1</text>
+            <text class="stat-text">项已完成</text>
+          </view>
+        </view>
       </view>
     </view>
-  </view>
-
-  <!-- 待执行事项 -->
-  <view class="task-list">
-    <text class="section-title">待执行事项</text>
-
-    <block wx:for="{{familyMembers}}" wx:key="id">
-      <view class="member-task">
-        <view class="member-header">
-          <image src="{{item.avatar}}" class="avatar" />
-          <text class="name">{{item.name}} ({{item.age}}岁)</text>
-        </view>
-
-        <block wx:for="{{item.reminders}}" wx:key="id">
-          <view class="reminder-item">
-            <image src="/images/clock.png" class="time-icon" />
-            <text class="time">{{item.time}}</text>
-            <text class="desc">{{item.desc}}</text>
-            <checkbox value="{{item.completed}}" class="check-box" bindchange="toggleCompleted" data-index="{{index}}" data-member="{{index}}" />
+    <text class="section-title">今日·待执行事项</text>
+    <!-- 待执行事项区域 -->
+    <view class="task-section"  bindtouchstart="handleTaskTouchStart"
+    bindtouchmove="handleTaskTouchMove"
+    bindtouchend="handleTaskTouchEnd">
+      
+      <!-- 妈妈的事项卡片 -->
+      <view class="task-card">
+        <view class="card-header">
+          <image class="avatar" src="/images/mom_avatar.png" mode="aspectFill"></image>
+          <view class="name-wrap">
+            <text class="name-text">妈妈</text>
+            <text class="age-text">(72岁)</text>
           </view>
-        </block>
+        </view>
+        <view class="task-list">
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">08:00</text>
+            <text class="task-text">吃降压药</text>
+            <checkbox class="checkbox" checked="{{false}}"></checkbox>
+          </view>
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">21:00</text>
+            <text class="task-text">测血压</text>
+            <checkbox class="checkbox" checked="{{false}}"></checkbox>
+          </view>
+        </view>
       </view>
-    </block>
 
-    <navigator url="/pages/add-reminder/add-reminder" class="add-reminder-btn">
-      <image src="/images/plus.png" class="plus-icon" />
-      <text class="btn-text">添加家人提醒</text>
-    </navigator>
+      <!-- 爸爸的事项卡片 -->
+      <view class="task-card">
+        <view class="card-header">
+          <image class="avatar" src="/images/dad_avatar.png" mode="aspectFill"></image>
+          <view class="name-wrap">
+            <text class="name-text">爸爸</text>
+            <text class="age-text">(74岁)</text>
+          </view>
+        </view>
+        <view class="task-list">
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">14:00</text>
+            <text class="task-text">复查提醒</text>
+            <checkbox class="checkbox" checked="{{true}}"></checkbox>
+          </view>
+        </view>
+      </view>
+        <!-- 妈妈的事项卡片 -->
+        <view class="task-card">
+        <view class="card-header">
+          <image class="avatar" src="/images/mom_avatar.png" mode="aspectFill"></image>
+          <view class="name-wrap">
+            <text class="name-text">妈妈</text>
+            <text class="age-text">(72岁)</text>
+          </view>
+        </view>
+        <view class="task-list">
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">08:00</text>
+            <text class="task-text">吃降压药</text>
+            <checkbox class="checkbox" checked="{{false}}"></checkbox>
+          </view>
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">21:00</text>
+            <text class="task-text">测血压</text>
+            <checkbox class="checkbox" checked="{{false}}"></checkbox>
+          </view>
+        </view>
+      </view>
+
+      <!-- 爸爸的事项卡片 -->
+      <view class="task-card">
+        <view class="card-header">
+          <image class="avatar" src="/images/dad_avatar.png" mode="aspectFill"></image>
+          <view class="name-wrap">
+            <text class="name-text">爸爸</text>
+            <text class="age-text">(74岁)</text>
+          </view>
+        </view>
+        <view class="task-list">
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">14:00</text>
+            <text class="task-text">复查提醒</text>
+            <checkbox class="checkbox" checked="{{true}}"></checkbox>
+          </view>
+        </view>
+      </view>
+        <!-- 妈妈的事项卡片 -->
+        <view class="task-card">
+        <view class="card-header">
+          <image class="avatar" src="/images/mom_avatar.png" mode="aspectFill"></image>
+          <view class="name-wrap">
+            <text class="name-text">妈妈</text>
+            <text class="age-text">(72岁)</text>
+          </view>
+        </view>
+        <view class="task-list">
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">08:00</text>
+            <text class="task-text">吃降压药</text>
+            <checkbox class="checkbox" checked="{{false}}"></checkbox>
+          </view>
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">21:00</text>
+            <text class="task-text">测血压</text>
+            <checkbox class="checkbox" checked="{{false}}"></checkbox>
+          </view>
+        </view>
+      </view>
+
+      <!-- 爸爸的事项卡片 -->
+      <view class="task-card">
+        <view class="card-header">
+          <image class="avatar" src="/images/dad_avatar.png" mode="aspectFill"></image>
+          <view class="name-wrap">
+            <text class="name-text">爸爸</text>
+            <text class="age-text">(74岁)</text>
+          </view>
+        </view>
+        <view class="task-list">
+          <view class="task-item">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <text class="time-text">14:00</text>
+            <text class="task-text">复查提醒</text>
+            <checkbox class="checkbox" checked="{{true}}"></checkbox>
+          </view>
+        </view>
+      </view>
+    </view>
+
+   
   </view>
+
+  
 </view>

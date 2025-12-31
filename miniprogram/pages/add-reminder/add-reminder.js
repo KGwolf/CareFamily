@@ -91,6 +91,9 @@ Page({
       status: ReminderStatus.WaitDeal,
       createDate: timeUtil.formatTime()
     };
+    const reminderDataList = wx.getStorageSync('reminders') || [];
+    reminderDataList.push(reminderData);
+    wx.setStorageSync('reminders', reminderDataList);
 
     console.log('保存的提醒数据：', reminderData);
     

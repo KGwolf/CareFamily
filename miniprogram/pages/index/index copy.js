@@ -1,43 +1,76 @@
 Page({
-  onLoad() {
-    const query = wx.createSelectorQuery();
-    query.select('#navigationBar').boundingClientRect();
-    query.exec((res) => {
-      if (res[0]) {
-        const navHeight = res[0].height;
-        this.setData({ navHeight });
-      }
-    });
-  },
+  /**
+   * 页面的初始数据
+   */
   data: {
-    navHeight: 0, // 默认值，根据实际情况调整
-    familyMembers: [
-      {
-        id: 1,
-        name: '妈妈',
-        age: 72,
-        avatar: '/images/mom-avatar.png',
-        reminders: [
-          { id: 1, time: '08:00', desc: '吃降压药', completed: false },
-          { id: 2, time: '21:00', desc: '测血压', completed: false }
-        ]
-      },
-      {
-        id: 2,
-        name: '爸爸',
-        age: 74,
-        avatar: '/images/dad-avatar.png',
-        reminders: [
-          { id: 3, time: '14:00', desc: '复查提醒', completed: true }
-        ]
-      }
-    ]
+    // 可后续添加动态数据
   },
 
-  toggleCompleted(e) {
-    const { index, member } = e.currentTarget.dataset;
-    const newFamily = this.data.familyMembers;
-    newFamily[member].reminders[index].completed = !newFamily[member].reminders[index].completed;
-    this.setData({ familyMembers: newFamily });
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad(options) {
+
+  },
+
+  /**
+   * 点击添加家人提醒
+   */
+  addReminder() {
+    // 这里可添加跳转至添加页面的逻辑
+    wx.showToast({
+      title: '即将进入添加页面',
+      icon: 'none',
+      duration: 1500
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide() {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload() {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
   }
-});
+})

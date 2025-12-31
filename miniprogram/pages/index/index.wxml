@@ -165,18 +165,8 @@
       </view>
     </view>
 
-    <!-- 添加提醒按钮 -->
-    <!-- <button class="add-btn" bindtap="addReminder">
-      <image class="icon-plus" src="/images/plus.png" mode="aspectFit"></image>
-      <text class="btn-text">添加家人提醒</text>
-    </button> -->
+   
   </view>
 
-  <!-- 底部导航栏 -->
-  <!-- <view class="tab-bar">
-    <image class="tab-icon active" src="/images/tab_home_active.png" mode="aspectFit"></image>
-    <image class="tab-icon" src="/images/tab_family.png" mode="aspectFit"></image>
-    <image class="tab-icon" src="/images/tab_stat.png" mode="aspectFit"></image>
-    <image class="tab-icon" src="/images/tab_mine.png" mode="aspectFit"></image>
-  </view> -->
+  
 </view>
