@@ -1,6 +1,9 @@
 // pages/add-family/add-family.js
 Page({
   data: {
+     // 与本人关系的选项
+     relationOptions: ['','爸爸', '妈妈', '儿子', '女儿', '爷爷', '奶奶', '外公', '外婆', '其他'],
+     relationIndex: 0,
     name: '',        // 家人姓名
     age: '',         // 家人年龄
     remark: '',      //备注
@@ -59,7 +62,10 @@ Page({
       gender: genderType
     });
   },
-
+ // 关系选择
+ onRelationChange(e) {
+  this.setData({ relationIndex: e.detail.value });
+},
   // 保存家人信息
   saveFamilyInfo() {
     const { name, age,remark, gender } = this.data;
@@ -105,6 +111,7 @@ Page({
       name: name,
       remark: remark,
       age: ageNum,
+      relation: this.data.relationOptions[this.data.relationIndex],
       gender: gender === 'male' ? '男' : '女', // 转换为中文显示
       genderKey: gender // 保留标识用于后续判断
     };

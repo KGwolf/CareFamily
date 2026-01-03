@@ -72,7 +72,8 @@ page {
   margin-left: 8rpx;
 }
 
-.form-input {
+.form-textarea {
+  height: 200rpx; /* 增加高度，避免文字被截断 */
   width: 100%;
   font-size: 30rpx;
   color: #333;
@@ -149,4 +150,51 @@ page {
 button {
   margin: 0;
   padding: 0;
+}
+
+/* 关系选择器容器 */
+.form-picker {
+  display: block;
+  height: 80rpx;
+  border: 1px solid #eee;
+  border-radius: 12rpx; /* 增大圆角 */
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 文字左对齐，箭头右对齐 */
+  padding: 0 20rpx;
+  color: #333;
+  background-color: #f9f9f9; /* 浅背景色 */
+}
+
+/* 内部容器：铺满picker，确保点击区域覆盖整个容器 */
+.picker-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+/* 选择器文字 */
+.picker-text {
+  font-size: 28rpx;
+  color: #666;
+}
+
+/* 右侧箭头 */
+.picker-arrow {
+  width: 16rpx;
+  height: 16rpx;
+  border-top: 2px solid #999;
+  border-right: 2px solid #999;
+  transform: rotate(45deg);
+}
+
+/* 选中状态 */
+.form-picker.active {
+  border-color: #007aff;
+  background-color: #fff;
 }

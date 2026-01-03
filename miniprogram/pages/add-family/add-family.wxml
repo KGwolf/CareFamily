@@ -2,11 +2,7 @@
   <!-- 顶部状态栏占位（适配小程序胶囊） -->
   <navigation-bar id="navigationBar" title="添加家人信息" back="{{true}}" color="black" background="#FFF"></navigation-bar>
 
-<!-- pages/add-family/add-family.wxml -->
 <view class="page-container">
-  <!-- 自定义导航栏 -->
-  
-
   <!-- 表单区域 -->
   <view class="form-content">
     <!-- 姓名输入项 -->
@@ -64,13 +60,36 @@
       </view>
     </view>
 
+<!-- 与本人关系 -->
+<view class="form-item">
+  <view class="form-label">
+    <text class="label-text">与本人关系</text>
+  </view>
+  <picker 
+    class="form-picker-wrapper"
+    mode="selector"
+    range="{{relationOptions}}"
+    value="{{relationIndex}}"
+    bindchange="onRelationChange"
+    catchtap="onPickerTap" 
+  >
+    <!-- 内部的 view 负责展示所有样式 -->
+    <view class="form-picker {{relationIndex > 0 ? 'active' : ''}}">
+      <view class="picker-text">
+        {{relationOptions[relationIndex] || '请选择关系'}}
+      </view>
+      <view class="picker-arrow"></view>
+    </view>
+  </picker>
+</view>
+
 <!-- 备注 -->
 <view class="form-item">
       <view class="form-label">
         <text class="label-text">备注</text>
       </view>
-      <input 
-        class="form-input" 
+      <textarea 
+        class="form-textarea" 
         placeholder="请输入备注信息"
         placeholder-class="placeholder-style"
         value="{{remark}}"

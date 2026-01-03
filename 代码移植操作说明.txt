@@ -1,3 +1,7 @@
 1.首先要安装npm，或者安装nrm方便管理npm的版本，最好用低版本的npm，9.19.4
 2.在代码根路径执行 npm install。（会出现node_modules）
-3.在代码根路径 手动创建文件夹 miniprogram_npm，然后点击 工具---> 构建npm。 然后把里面的文件夹拷贝到根路径（因为多了一层目录。）
+3.在代码根路径 手动创建文件夹 miniprogram_npm，然后点击 工具---> 构建npm。 然后把里面的文件夹拷贝到根路径（因为多了一层目录。）, 缺点就是每次构建的时候，都需要这样拷贝。
+
+4.解决方式：新建一个miniprogram文件夹，把该拷贝的文件都拷贝进去，设置 project.config.json 文件：  "miniprogramRoot": "miniprogram/",
+然后 可以设置  "packNpmManually": false,  
+这样新电脑只要安装了npm之后，install 再 构建npm就不会报错了！

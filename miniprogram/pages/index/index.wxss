@@ -1,40 +1,14 @@
-/* 全局重置 */
-page {
-  background-color: #F5F7FA;
-  font-family: PingFang SC, Microsoft YaHei, sans-serif;
-}
-
 /* 页面容器 */
-.page-container {
-  width: 100%;
-  /* 页面高度占满屏幕，排除导航栏高度，配合 flex 布局 */
+.page {
   height: 100vh;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  background-color: #f8f8f8;
   display: flex;
   flex-direction: column;
-}
-
-/* 状态栏占位 */
-.status-bar {
-  height: var(--status-bar-height);
-  width: 100%;
-}
-
-/* 主内容区：自适应剩余高度，内部用 flex 垂直布局 */
-.content-wrap {
-  flex: 1; /* 填满 page-container 除了顶部 navigation-bar 的剩余空间 */
-  width: 100%;
-  box-sizing: border-box;
+  background: #f7f7f7;
   padding: 20rpx;
-  display: flex;
-  flex-direction: column;
-  /* 关键：避免 content-wrap 自身滚动，让 task-section 单独滚动 */
-  overflow: hidden;
+  box-sizing: border-box;
+  background-color: #f5f5f5; /* 页面背景色 */
+  min-height: 100vh; /* 确保即使内容少，背景也能铺满 */
 }
-
 /* 顶部卡片：固定高度，不参与自适应 */
 .top-card {
   width: 100%;
@@ -44,6 +18,7 @@ page {
   box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.08);
   margin-bottom: 20rpx;
   box-sizing: border-box;
+  margin-top: 20rpx;
 }
 
 /* 顶部卡片内部样式（保持原有样式不变，仅补充） */
@@ -98,24 +73,6 @@ page {
   color: #666666;
 }
 
-/* 待执行事项区域：核心配置 */
-.task-section {
-  /* 关键1：flex:1 自动填充 content-wrap 顶部卡片和底部按钮之间的剩余高度 */
-  flex: 1;
-  width: 100%;
-  box-sizing: border-box;
-  /* 关键2：overflow-y: auto 开启垂直滚动，内容超出时可滑动 */
-  overflow-y: auto;
-  /* 隐藏滚动条（可选，优化视觉体验） */
-  -webkit-overflow-scrolling: touch; /* 开启IOS弹性滚动，提升流畅度 */
-  scrollbar-width: none; /* 火狐隐藏滚动条 */
-}
-/* 微信小程序隐藏滚动条（兼容安卓/IOS） */
-.task-section::-webkit-scrollbar {
-  display: none;
-}
-
-
 /* task-section 内部样式（保持原有样式不变，仅补充） */
 .section-title {
   font-size: 32rpx;
@@ -125,6 +82,35 @@ page {
   display: block;
   margin-left: 22rpx;
 }
+
+/* 列表标题 */
+.list-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+/* 滚动区域 */
+.scroll-area {
+  flex: 1;              /* 核心 */
+  overflow: hidden;     /* 防止 page 滚动 */
+}
+/* 空状态提示 */
+.empty-tip {
+  height: 100%; /* 关键：填充scroll-view的高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 28rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 1rpx 5rpx rgba(0,0,0,0.06);
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
 
 /* 事项卡片 */
 .task-card {
@@ -199,74 +185,18 @@ page {
   flex: 1;
 }
 
-/* 复选框样式重置 */
-.checkbox {
-  width: 36rpx;
-  height: 36rpx;
-  border-radius: 6rpx;
-  border: 2rpx solid #DCDCDC;
-  background-color: #FFFFFF;
-}
 
-/* 选中的复选框 */
-checkbox[checked] {
-  background-color: #00C48C;
-  border-color: #00C48C;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAACXBIWXMAAAsTAAALEwEAmpwYAAABxUlEQVR4nO2W0Q2DMAxEXz/3X0QOJgR6AOW2ZJfQTHyJkR3Q+SqEJ0NlXjJzGsf7t1V1rW9r1GgzQE12gSjR9tS67XZxK1GfnlPYfJzkK2DcUJQEV3n2c7ZxL9Uw9rJ+L2fVu6L2U1o0w1q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV9r1e12w2q0uy1W1t1rV//AAB4KSURBVHja7NwXt+AAAA//8DwAIHxL0VAAAAAElFTkSuQmCC");
-  background-size: 24rpx 24rpx;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-/* 添加按钮：固定在 content-wrap 底部，不参与滚动 */
-.add-btn {
-  width: 100%;
-  height: 88rpx;
-  line-height: 88rpx;
-  background-color: #42b983;
-  color: #fff;
-  border-radius: 12rpx;
-  border: none;
-  font-size: 30rpx;
+/* 右侧自定义复选框容器 */
+.custom-checkbox {
+  width: 60rpx; /* 设置一个固定的点击区域大小 */
+  height: 60rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 20rpx;
-  /* 避免按钮被 task-section 滚动遮挡 */
-  position: relative;
-  z-index: 10;
-}
-.icon-plus {
-  width: 40rpx;
-  height: 40rpx;
-  margin-right: 15rpx;
-}
-.btn-text {
-  font-size: 30rpx;
 }
 
-/* 底部导航栏 */
-.tab-bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 98rpx;
-  background-color: #FFFFFF;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border-top: 1rpx solid #F0F0F0;
-  padding: 0 40rpx;
-  box-sizing: border-box;
-}
-
-.tab-icon {
-  width: 48rpx;
-  height: 48rpx;
-  opacity: 0.5;
-}
-
-.tab-icon.active {
-  opacity: 1;
+/* 复选框图片样式 */
+.checkbox-img {
+  width: 100%;
+  height: 100%;
 }

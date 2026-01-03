@@ -15,7 +15,7 @@ Page({
     // 频率选项
     frequencyOptions: [
       { label: '每天', value: 'daily' },
-      { label: '每周', value: 'weekly' },
+      // { label: '每周', value: 'weekly' },
       { label: '指定日期', value: 'custom' }
     ]
   },
@@ -82,21 +82,36 @@ Page({
     
     // 组装提醒数据（实际项目中需调用接口保存）
     const reminderData = {
+      id: Date.now(), // 时间戳作为唯一标识
       familyId,
       familyName,
       remindTime: selectedTime,
       frequency: selectedFrequency,
       customDate: selectedFrequency === 'custom' ? customDate : '',
       content: reminderContent,
-      status: ReminderStatus.WaitDeal,
+      status: ReminderStatus.WaitDeal,//可要可不要，单独记录勾选的记录，
       createDate: timeUtil.formatTime()
     };
+    if (selectedTime == "") {
+      wx.showToast({
+        title: '请选择提醒时间',
+        icon: 'none'
+      });
+      return;
+    }
+    if (reminderContent == "") {
+      wx.showToast({
+        title: '请输入提醒内容',
+        icon: 'none'
+      });
+      return;
+    }
     const reminderDataList = wx.getStorageSync('reminders') || [];
     reminderDataList.push(reminderData);
     wx.setStorageSync('reminders', reminderDataList);
 
     console.log('保存的提醒数据：', reminderData);
-    
+     
     // 保存成功提示
     wx.showToast({
       title: '提醒添加成功',

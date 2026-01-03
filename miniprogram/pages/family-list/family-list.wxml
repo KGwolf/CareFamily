@@ -28,7 +28,7 @@
               <text class="family-name">{{item.name}}</text>
               <view class="sub-info">
                 <text class="age-text">{{item.age}}岁</text>
-                <text class="relation-tag">{{item.relation || (item.gender === '男' ? '长辈' : '长辈')}}</text>
+                <text class="relation-tag">{{item.relation}}</text>
               </view>
             </view>
             <!-- 滑动提示箭头 -->

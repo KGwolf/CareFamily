@@ -1,172 +1,73 @@
-<view class="page-container">
+<view class="page">
   <!-- 顶部状态栏占位（适配小程序胶囊） -->
   <navigation-bar id="navigationBar" title="关爱家人小助手" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+ 
 
-  <!-- 主内容区 -->
-  <view class="content-wrap">
-    <!-- 顶部家庭关怀卡片 -->
-    <view class="top-card">
+  <!-- 顶部家庭关怀卡片 -->
+  <view class="top-card">
       <text class="card-title">今日·家庭关怀</text>
       <view class="stats-row">
         <view class="stat-item">
           <image class="stat-img" src="/images/family.png" mode="aspectFit"></image>
-          <text class="stat-text">2位家人</text>
+          <text class="stat-text">{{todayFamilyCount}}位家人</text>
         </view>
         <view class="stat-item">
           <image class="stat-img" src="/images/todo.png" mode="aspectFit"></image>
           <view class="stat-num-wrap">
-            <text class="stat-num">5</text>
+            <text class="stat-num">{{totalSummary.uncompleted}}</text>
             <text class="stat-text">项待执行</text>
           </view>
         </view>
         <view class="stat-item">
           <image class="stat-img" src="/images/done.png" mode="aspectFit"></image>
           <view class="stat-num-wrap">
-            <text class="stat-num">1</text>
+            <text class="stat-num">{{totalSummary.completed}}</text>
             <text class="stat-text">项已完成</text>
           </view>
         </view>
       </view>
     </view>
     <text class="section-title">今日·待执行事项</text>
-    <!-- 待执行事项区域 -->
-    <view class="task-section"  bindtouchstart="handleTaskTouchStart"
-    bindtouchmove="handleTaskTouchMove"
-    bindtouchend="handleTaskTouchEnd">
-      
-      <!-- 妈妈的事项卡片 -->
-      <view class="task-card">
-        <view class="card-header">
-          <image class="avatar" src="/images/mom_avatar.png" mode="aspectFill"></image>
-          <view class="name-wrap">
-            <text class="name-text">妈妈</text>
-            <text class="age-text">(72岁)</text>
-          </view>
-        </view>
-        <view class="task-list">
-          <view class="task-item">
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">08:00</text>
-            <text class="task-text">吃降压药</text>
-            <checkbox class="checkbox" checked="{{false}}"></checkbox>
-          </view>
-          <view class="task-item">
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">21:00</text>
-            <text class="task-text">测血压</text>
-            <checkbox class="checkbox" checked="{{false}}"></checkbox>
-          </view>
-        </view>
-      </view>
 
-      <!-- 爸爸的事项卡片 -->
-      <view class="task-card">
-        <view class="card-header">
-          <image class="avatar" src="/images/dad_avatar.png" mode="aspectFill"></image>
-          <view class="name-wrap">
-            <text class="name-text">爸爸</text>
-            <text class="age-text">(74岁)</text>
-          </view>
-        </view>
-        <view class="task-list">
-          <view class="task-item">
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">14:00</text>
-            <text class="task-text">复查提醒</text>
-            <checkbox class="checkbox" checked="{{true}}"></checkbox>
-          </view>
-        </view>
-      </view>
-        <!-- 妈妈的事项卡片 -->
-        <view class="task-card">
-        <view class="card-header">
-          <image class="avatar" src="/images/mom_avatar.png" mode="aspectFill"></image>
-          <view class="name-wrap">
-            <text class="name-text">妈妈</text>
-            <text class="age-text">(72岁)</text>
-          </view>
-        </view>
-        <view class="task-list">
-          <view class="task-item">
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">08:00</text>
-            <text class="task-text">吃降压药</text>
-            <checkbox class="checkbox" checked="{{false}}"></checkbox>
-          </view>
-          <view class="task-item">
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">21:00</text>
-            <text class="task-text">测血压</text>
-            <checkbox class="checkbox" checked="{{false}}"></checkbox>
-          </view>
-        </view>
-      </view>
 
-      <!-- 爸爸的事项卡片 -->
-      <view class="task-card">
+  <!-- 核心：直接用 view 包裹列表，不再需要 scroll-view -->
+  <scroll-view
+    class="scroll-area"
+    scroll-y
+    show-scrollbar="{{false}}"
+  >
+   <!-- 空状态提示：没有数据时显示 -->
+<view class="empty-tip" wx:if="{{!familyReminderList.length}}">
+  <text>今日暂无待执行事项~</text>
+</view>
+ <view class="task-card" wx:for="{{familyReminderList}}" wx:key="familyIndex">
         <view class="card-header">
-          <image class="avatar" src="/images/dad_avatar.png" mode="aspectFill"></image>
+          
+          <image 
+  class="avatar" 
+  src="{{ item.gender === '女' ? '/images/mom_avatar.png' : '/images/dad_avatar.png' }}" 
+  mode="aspectFill">
+</image>
           <view class="name-wrap">
-            <text class="name-text">爸爸</text>
-            <text class="age-text">(74岁)</text>
+            <text class="name-text">{{item.name}}</text>
+            <text class="age-text">({{item.age}}岁)</text>
           </view>
         </view>
         <view class="task-list">
-          <view class="task-item">
+          <view class="task-item" wx:for="{{item.reminderList}}" wx:key="reminderIndex" wx:for-item="reminder" >
             <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">14:00</text>
-            <text class="task-text">复查提醒</text>
-            <checkbox class="checkbox" checked="{{true}}"></checkbox>
-          </view>
-        </view>
-      </view>
-        <!-- 妈妈的事项卡片 -->
-        <view class="task-card">
-        <view class="card-header">
-          <image class="avatar" src="/images/mom_avatar.png" mode="aspectFill"></image>
-          <view class="name-wrap">
-            <text class="name-text">妈妈</text>
-            <text class="age-text">(72岁)</text>
-          </view>
-        </view>
-        <view class="task-list">
-          <view class="task-item">
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">08:00</text>
-            <text class="task-text">吃降压药</text>
-            <checkbox class="checkbox" checked="{{false}}"></checkbox>
-          </view>
-          <view class="task-item">
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">21:00</text>
-            <text class="task-text">测血压</text>
-            <checkbox class="checkbox" checked="{{false}}"></checkbox>
-          </view>
-        </view>
-      </view>
+            <text class="time-text">{{reminder.remindTime}}</text>
+            <text class="task-text">{{reminder.content}}</text>
 
-      <!-- 爸爸的事项卡片 -->
-      <view class="task-card">
-        <view class="card-header">
-          <image class="avatar" src="/images/dad_avatar.png" mode="aspectFill"></image>
-          <view class="name-wrap">
-            <text class="name-text">爸爸</text>
-            <text class="age-text">(74岁)</text>
-          </view>
-        </view>
-        <view class="task-list">
-          <view class="task-item">
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">14:00</text>
-            <text class="task-text">复查提醒</text>
-            <checkbox class="checkbox" checked="{{true}}"></checkbox>
+            <view class="custom-checkbox" bindtap="toggleReminder" data-reminder-id="{{reminder.id}}">
+              <image mode="aspectFit" class="checkbox-img" wx:if="{{reminder.checked}}" src="/images/checked.png" />
+              <image  mode="aspectFit" class="checkbox-img" wx:else src="/images/unchecked.png" />
+            </view>
+            
           </view>
         </view>
       </view>
-    </view>
-
-   
-  </view>
+  </scroll-view>
+</view>
 
   
-</view>

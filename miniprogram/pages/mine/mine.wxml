@@ -2,5 +2,5 @@
 <view class="mine">
   <text>我的信息</text>
   <text>登录状态：已登录</text>
-  <navigator url="/pages/family-members/family-members" class="btn">家庭成员</navigator>
+  <!-- <navigator url="/pages/family-members/family-members" class="btn">家庭成员</navigator> -->
 </view>

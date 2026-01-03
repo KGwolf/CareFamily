@@ -1,10 +1,57 @@
+<view class="page">
 <navigation-bar title="家人详情" back="{{true}}" color="black" background="#FFF"></navigation-bar>
-<view class="detail">
-  <image src="{{family.avatar}}" mode="aspectFill" class="avatar"></image>
-  <text class="name">{{family.name}}</text>
-  <text class="age">{{family.age}}岁</text>
+<!-- pages/family/detail.wxml -->
 
-  <navigator url="/pages/reminder-list/reminder-list?familyId={{family.id}}" class="btn">提醒事项列表</navigator>
-  <navigator url="/pages/today-progress/today-progress?familyId={{family.id}}" class="btn">今日完成情况</navigator>
-  <navigator url="/pages/statistics/statistics?familyId={{family.id}}" class="btn">查看统计（激励）</navigator>
+
+<!-- 家人信息卡 -->
+<view class="card family-card" bindtap="onEditFamily">
+  <view class="family-main">
+    <view class="avatar">👤</view>
+    <view class="family-info">
+      <view class="name">{{family.name}}</view>
+      <view class="meta">{{family.age}} 岁 · {{family.relation}}</view>
+    </view>
+  </view>
+
+  <view class="remark">
+    <text class="remark-label">备注：</text>
+    <text class="remark-text">
+      {{family.remark}}
+    </text>
+  </view>
+
+  <view class="edit-tip">✏️ 编辑家人信息</view>
+</view>
+
+<!-- 提醒规则 -->
+<view class="section-header">
+  <view class="section-title">提醒事项</view>
+  
+  <view class="add-btn" bindtap="onAddReminder">＋ 新增提醒</view>
+</view>
+
+<!-- 提醒规则列表 -->
+<!-- 核心：直接用 view 包裹列表，不再需要 scroll-view -->
+  <scroll-view
+      class="scroll-area"
+      scroll-y
+      show-scrollbar="{{false}}"
+    >
+        <!-- 空状态提示：没有数据时显示 -->
+      <view class="empty-tip" wx:if="{{!familyReminderList.length}}">
+        <text>暂无待执行事项~</text>
+      </view>
+      <view class="card reminder-item" bindtap="onEditReminder" wx:for="{{familyReminderList}}" wx:for-item="reminder">
+        <view class="reminder-left">
+          <view class="time">{{reminder.remindTime}}</view>
+          <view class="cycle">{{reminder.frequency == "daily" ? "每日":reminder.customDate}}</view>
+        </view>
+        <view class="reminder-right">
+          <view class="content">{{reminder.content}}</view>
+        </view>
+      </view>
+    </scroll-view>
+
+     <!-- 底部间距：添加这一行 -->
+  <view class="list-bottom-space"></view>
 </view>

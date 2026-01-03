@@ -3,23 +3,8 @@ Page({
     familyList: [],
     slideOffset: [] // 存储每个卡片的滑动偏移量（负数表示左滑，显示操作栏）
   },
-// 封装刷新方法，供当前页主动调用
-loadFamilyList() {
-  const newList  = wx.getStorageSync('familyList') || [];
-  this.setData({
-    familyList: newList
-  });
-},
-// 点击卡片：跳转家人详情页（完整功能）
-handleGoFamilyDetail(e) {
-  debugger;
-  const item = e.currentTarget.dataset.item;
-  wx.showToast({ title: `点击家人：${item.name}` });
-  // wx.navigateTo({
-  //   url: `/pages/family-detail/family-detail?familyId=${item.id}&familyName=${encodeURIComponent(item.name)}&age=${item.age}&gender=${item.gender}&relation=${encodeURIComponent(item.relation)}`
-  // });
-},
-  onLoad() {
+  // 封装刷新方法，供当前页主动调用
+  loadFamilyList() {
     // 从缓存获取家人列表
     const cacheFamilyList = wx.getStorageSync('familyList') || [];
     const slideOffset = cacheFamilyList.map(() => 0);
@@ -27,6 +12,20 @@ handleGoFamilyDetail(e) {
       familyList: cacheFamilyList,
       slideOffset
     });
+  },
+  // 点击卡片：跳转家人详情页（完整功能）
+  handleGoFamilyDetail(e) {
+    const familyItem = e.currentTarget.dataset.item;
+      // 跳转到添加提醒页面，携带家人信息
+    wx.navigateTo({
+      url: `/pages/family-detail/family-detail?familyId=${familyItem.id}&familyName=${familyItem.name}`
+    });
+  },
+  onLoad() {
+    this.loadFamilyList();
+  },
+  onShow(){
+    this.loadFamilyList();
   },
 
    // 右滑/点击空白处 关闭按钮区（Vant组件自带）
@@ -47,21 +46,6 @@ handleGoFamilyDetail(e) {
     });
    },
  
-   // 删除按钮点击
-   handleDelete(e) {
-     const item = e.currentTarget.dataset.item;
-     wx.showModal({
-       title: '提示',
-       content: `确定删除${item.name}吗？`,
-       success: (res) => {
-         if (res.confirm) {
-           this.setData({
-             familyList: this.data.familyList.filter(i => i.id !== item.id)
-           });
-         }
-       }
-     });
-   },
   // ========== 家人操作功能 ==========
   // 1. 编辑家人资料
   handleEdit(e) {
@@ -112,6 +96,15 @@ handleGoFamilyDetail(e) {
           // 3. 更新页面数据和缓存
           this.setData({ familyList, slideOffset });
           wx.setStorageSync('familyList', familyList);
+//删除对应的提醒列表
+          const remindersList = wx.getStorageSync('reminders') || [];
+          const afterDeleteReminders = remindersList.filter(reminder => {
+            if (reminder.familyId - 0 !== familyItem.id) {
+              return true;
+            }
+            return false;
+          });
+          wx.setStorageSync('reminders', afterDeleteReminders);
           // 4. 提示删除成功
           wx.showToast({
             title: '删除成功',

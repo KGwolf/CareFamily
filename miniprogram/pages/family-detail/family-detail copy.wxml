@@ -1,0 +1,49 @@
+<navigation-bar title="家人详情" back="{{true}}" color="black" background="#FFF"></navigation-bar>
+<!-- 家人详情 WXML -->
+<view class="page-container">
+  <!-- 家人基础信息 -->
+  <view class="info-card">
+    <view class="info-top">
+      <image class="info-avatar" src="{{avatarUrl}}"></image>
+      <view class="info-basic">
+        <text class="info-name">{{family.name}} {{family.age}}岁</text>
+        <text class="info-relation">关系：{{family.relation}}</text>
+      </view>
+      <button class="edit-btn" bindtap="goToEdit">编辑信息</button>
+    </view>
+    <view class="info-remark" wx:if="{{family.remark}}">
+      <text class="remark-label">备注：</text>
+      <text class="remark-content">{{family.remark}}</text>
+    </view>
+  </view>
+
+  <!-- 提醒项列表 -->
+  <view class="remind-section">
+    <view class="section-header">
+      <text class="section-title">当前提醒项</text>
+      <button class="add-btn" bindtap="goToAddRemind">+ 添加提醒</button>
+    </view>
+
+    <!-- 提醒列表 -->
+    <block wx:for="{{remindList}}" wx:key="id">
+      <view class="remind-item">
+        <view class="item-left">
+          <text class="item-content">{{item.title}}</text>
+          <text class="item-time">
+            {{item.frequency === '每天' ? '每天' : item.date}} {{item.time}}
+          </text>
+        </view>
+        <view class="item-right">
+          <text class="item-status {{item.status === 1 ? 'done' : 'pending'}}">
+            {{item.status === 1 ? '已完成' : '未完成'}}
+          </text>
+        </view>
+      </view>
+    </block>
+
+    <!-- 空状态 -->
+    <view class="empty-tip" wx:if="{{remindList.length === 0}}">
+      <text>暂无提醒项，点击右上角“+”添加</text>
+    </view>
+  </view>
+</view>

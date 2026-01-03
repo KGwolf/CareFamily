@@ -1,0 +1,108 @@
+/* 家人详情 WXSS */
+.info-card {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+.info-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.info-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.info-basic {
+  flex: 1;
+}
+.info-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+.info-relation {
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 5rpx;
+}
+.edit-btn {
+  padding: 8rpx 20rpx;
+  font-size: 24rpx;
+  border: 1rpx solid #eee;
+  border-radius: 8rpx;
+  color: #666;
+}
+.info-remark {
+  font-size: 26rpx;
+  color: #999;
+  padding-top: 15rpx;
+  border-top: 1rpx solid #f5f5f5;
+}
+.remark-label {
+  color: #666;
+  font-weight: 500;
+}
+
+.remind-section {
+  background: #fff;
+  border-radius: 12rpx;
+  padding: 30rpx;
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+.add-btn {
+  font-size: 24rpx;
+  color: #1677ff;
+  background: transparent;
+  padding: 0;
+}
+.remind-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+.item-content {
+  font-size: 28rpx;
+  color: #333;
+  display: block;
+}
+.item-time {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 5rpx;
+}
+.item-status {
+  font-size: 24rpx;
+  padding: 6rpx 16rpx;
+  border-radius: 16rpx;
+}
+.item-status.pending {
+  color: #ff7d00;
+  background: #fff8e6;
+}
+.item-status.done {
+  color: #00b42a;
+  background: #f0fff4;
+}
+.empty-tip {
+  text-align: center;
+  color: #999;
+  font-size: 26rpx;
+  padding: 50rpx 0;
+}
