@@ -183,3 +183,18 @@ page {
 .btn.edit { background-color: #666 !important; }
 .btn.remind { background-color: #07c160 !important; }
 .btn.delete { background-color: #f53f3f !important; }
+
+
+.headerview {
+  display: flex;
+}
+
+.swipe-tip{
+  padding: 45rpx 20px 20rpx;
+  font-size: 22rpx;
+  color: #42b983;
+}
+
+.tip-text {
+  margin-left: 6rpx;
+}

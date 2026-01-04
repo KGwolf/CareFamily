@@ -2,10 +2,18 @@
 <!-- 页面容器 -->
 <view class="page-container">
   <!-- 顶部信息栏 -->
-  <view class="top-bar">
+  <view class="headerview">
+    <view class="top-bar">
     <text class="page-title">我的家人</text>
-    <text class="family-count">共 {{familyList.length}} 位家人</text>
+    <text class="family-count">共 {{familyList.length}} 位家人   </text>
   </view>
+  <!-- 提示图标+文字 -->
+  <view class="swipe-tip">
+    <icon type="info" size="26rpx" color="#42b983" />
+    <text class="tip-text">左滑列表项可以操作</text>
+  </view>
+  </view>
+  
 
   <!-- 家人列表容器 -->
   <view class="family-list">

@@ -22,6 +22,7 @@
   display: flex;
   flex-direction: column;
   gap: 20rpx;
+  margin-top:20rpx;
 }
 
 .family-main {
@@ -29,28 +30,33 @@
   align-items: center;
 }
 
-.avatar {
+
+/* 头像占位 */
+.avatar-wrap {
   width: 88rpx;
   height: 88rpx;
   border-radius: 50%;
-  background: #f0f0f0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 40rpx;
-  margin-right: 24rpx;
 }
-
+.avatar-text {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333;
+}
 .family-info .name {
   font-size: 36rpx;
   font-weight: 600;
   color: #111;
+  margin-left:20rpx;
 }
 
 .family-info .meta {
   font-size: 24rpx;
   color: #888;
   margin-top: 6rpx;
+  margin-left:20rpx;
 }
 
 .remark {
@@ -65,11 +71,13 @@
 
 .edit-tip {
   font-size: 26rpx;
-  color: #576b95;
+  color: #576595;
   align-self: flex-end;
 }
 
 /* 提醒区 */
+
+
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -88,10 +96,14 @@
 }
 
 /* 提醒规则项 */
-.reminder-item {
+.slide-wrap {
   display: flex;
   align-items: center;
+  /* width: 100%; */
+  height: 100rpx; /* 与卡片高度一致 */
+  margin: 20rpx;
 }
+
 
 .reminder-left {
   width: 180rpx;
@@ -108,8 +120,17 @@
   margin-top: 4rpx;
 }
 
+/* 右侧内容区域：多行溢出省略号 */
 .reminder-right {
   flex: 1;
+  /* 核心代码：实现多行省略 */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* 限制在 2 行内 */
+  -webkit-box-orient: vertical; /* 从上到下垂直排列子元素 */
+  overflow: hidden; /* 隐藏溢出内容 */
+  text-overflow: ellipsis; /* 溢出显示... */
+  /* 可选：增加行高，让两行文字间距更舒适 */
+  line-height: 1.5; 
 }
 
 .content {
@@ -224,4 +245,45 @@
   margin-bottom: 20rpx;
   padding: 0 4rpx;
 }
+
+/* 提示样式 */
+.swipe-tip {
+  display: flex;
+  align-items: center;
+  font-size: 22rpx;
+  color: #42b983;
+  margin-left: 30rpx;
+  margin-right: auto;
+}
+
+.tip-text {
+  margin-left: 6rpx;
+}
+
+/* 按钮容器：强制横向 */
+.swipe-btn-wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  height: 100% !important;
+}
+
+/* 按钮本身：最终样式 */
+.swipe-btn-wrapper .btn {
+  width: 140rpx !important;
+  height: 100% !important;
+  font-size: 24rpx !important;
+  line-height: 120rpx !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* 按钮颜色 */
+.btn.edit { background-color: #666 !important; }
+.btn.remind { background-color: #07c160 !important; }
+.btn.delete { background-color: #f53f3f !important; }
 

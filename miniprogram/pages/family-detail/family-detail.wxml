@@ -6,7 +6,10 @@
 <!-- 家人信息卡 -->
 <view class="card family-card" bindtap="onEditFamily">
   <view class="family-main">
-    <view class="avatar">👤</view>
+    <!-- <view class="avatar">👤</view> -->
+    <view class="avatar-wrap" style="background-color: {{family.gender === '男' ? '#e1f5fe' : '#ffebee'}}">
+              <text class="avatar-text">{{family.name[0]}}</text>
+    </view>
     <view class="family-info">
       <view class="name">{{family.name}}</view>
       <view class="meta">{{family.age}} 岁 · {{family.relation}}</view>
@@ -20,13 +23,17 @@
     </text>
   </view>
 
-  <view class="edit-tip">✏️ 编辑家人信息</view>
+  <!-- <view class="edit-tip"> 编辑家人信息</view> -->
 </view>
 
 <!-- 提醒规则 -->
 <view class="section-header">
   <view class="section-title">提醒事项</view>
-  
+  <!-- 提示图标+文字 -->
+  <view class="swipe-tip">
+    <icon type="info" size="24rpx" color="#42b983" />
+    <text class="tip-text">左滑列表项可以操作</text>
+  </view>
   <view class="add-btn" bindtap="onAddReminder">＋ 新增提醒</view>
 </view>
 
@@ -41,7 +48,30 @@
       <view class="empty-tip" wx:if="{{!familyReminderList.length}}">
         <text>暂无待执行事项~</text>
       </view>
-      <view class="card reminder-item" bindtap="onEditReminder" wx:for="{{familyReminderList}}" wx:for-item="reminder">
+
+      <!-- 家人卡片（循环渲染 + 滑动事件） -->
+      <block wx:for="{{familyReminderList}}" wx:key="id" wx:for-item="reminder">
+        <van-swipe-cell right-width="{{180}}" bind:close="onSwipeClose" >
+          <view class="slide-wrap" data-index="{{index}}" bindtap="onEditReminder" data-item="{{reminder}}">
+            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
+            <view class="reminder-left">
+              <view class="time">{{reminder.remindTime}}</view>
+              <view class="cycle">{{reminder.frequency == "daily" ? "每日":reminder.customDate}}</view>
+            </view>
+            <view class="reminder-right">
+              <view class="content">{{reminder.content}}</view>
+            </view>
+          </view>
+
+          <view slot="right" class="swipe-btn-wrapper">
+              <button class="btn edit" bindtap="handleEdit" data-item="{{reminder}}">编辑提醒</button>
+              <button class="btn delete" bindtap="handleDelete" data-item="{{reminder}}">删除提醒</button>
+          </view>
+        </van-swipe-cell>
+    </block>
+
+      <!-- <view class="card reminder-item" bindtap="onEditReminder" wx:for="{{familyReminderList}}" wx:for-item="reminder">
+        <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
         <view class="reminder-left">
           <view class="time">{{reminder.remindTime}}</view>
           <view class="cycle">{{reminder.frequency == "daily" ? "每日":reminder.customDate}}</view>
@@ -49,7 +79,7 @@
         <view class="reminder-right">
           <view class="content">{{reminder.content}}</view>
         </view>
-      </view>
+      </view> -->
     </scroll-view>
 
      <!-- 底部间距：添加这一行 -->

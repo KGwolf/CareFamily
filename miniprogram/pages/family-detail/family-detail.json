@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "navigation-bar": "/components/navigation-bar/navigation-bar"
+    "navigation-bar": "/components/navigation-bar/navigation-bar",
+    "van-swipe-cell": "/miniprogram_npm/vant-weapp/swipe-cell/index"
   }
 }
