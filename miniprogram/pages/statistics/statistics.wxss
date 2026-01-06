@@ -1,1 +1,154 @@
-/* pages/statistics/statistics.wxss */
+page {
+  background: #f6f7f9;
+}
+
+/* ===== 家人列表 ===== */
+.family-scroll {
+  padding: 16rpx 24rpx;
+}
+
+.family-list {
+  display: flex;
+}
+
+.family-card {
+  width: 200rpx;
+  padding: 24rpx;
+  margin-right: 20rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  text-align: center;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,.04);
+}
+
+.family-card.active {
+  border: 2rpx solid #6fc1a5;
+}
+
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 50%;
+  margin-bottom: 12rpx;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.age {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.status {
+  margin-top: 12rpx;
+  font-size: 22rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.status.good {
+  background: #e6f6ef;
+  color: #2fa37b;
+}
+
+/* ===== 内容卡片 ===== */
+.section {
+  margin: 20rpx 24rpx;
+}
+
+.card {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 28rpx;
+}
+
+.section-title {
+  font-weight: 600;
+  margin-bottom: 16rpx;
+}
+
+/* 今日 */
+.today-box {
+  background: linear-gradient(135deg, #eaf6f1, #f7fbfa);
+  border-radius: 20rpx;
+  padding: 20rpx;
+}
+
+.today-title {
+  font-size: 26rpx;
+}
+
+.strong {
+  font-size: 34rpx;
+  font-weight: bold;
+}
+
+.today-ok {
+  margin-top: 12rpx;
+  color: #2fa37b;
+}
+
+/* 进度条 */
+.progress-item {
+  display: flex;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+.label {
+  width: 140rpx;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 16rpx;
+  background: #eee;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin: 0 16rpx;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, #6fc1a5, #4bb3a1);
+}
+
+.progress.blue {
+  background: linear-gradient(90deg, #6fc1a5, #5aa7d9);
+}
+
+.percent {
+  width: 80rpx;
+  text-align: right;
+}
+
+/* 连续天数 */
+.care-days {
+  margin-top: 24rpx;
+  background: #f2faf7;
+  padding: 20rpx;
+  border-radius: 20rpx;
+  text-align: center;
+}
+
+/* 统计 */
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.percent.green {
+  color: #2fa37b;
+}
+
+.detail-btn {
+  margin-top: 20rpx;
+  background: #eef5fb;
+  color: #4a8fd8;
+  text-align: center;
+  padding: 20rpx;
+  border-radius: 20rpx;
+}

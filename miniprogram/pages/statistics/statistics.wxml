@@ -1,6 +1,84 @@
 <navigation-bar title="统计" back="{{true}}" color="black" background="#FFF"></navigation-bar>
-<view class="statistics">
-  <text>完成率：{{completionRate}}%</text>
-  <text>连续完成天数：{{streakDays}}天</text>
-  <text>累计提醒次数：{{totalReminders}}</text>
+
+<!-- 家人横向列表 -->
+<scroll-view
+  class="family-scroll"
+  scroll-x
+  show-scrollbar="{{false}}"
+  enhanced
+>
+  <view class="family-list">
+    <block wx:for="{{familyList}}" wx:key="id">
+      <view
+        class="family-card {{currentId === item.id ? 'active' : ''}}"
+        bindtap="onSelectFamily"
+        data-id="{{item.id}}"
+      >
+        <image class="avatar" src="{{item.avatar}}" />
+        <view class="name">{{item.name}}</view>
+        <view class="age">({{item.age}}岁)</view>
+
+        <view wx:if="{{item.status === 'good'}}" class="status good">
+          照护良好
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+
+<!-- 当前家人概览 -->
+<view class="section card">
+  <view class="section-title">
+    {{currentFamily.name}}（{{currentFamily.age}}岁）
+  </view>
+
+  <view class="today-box">
+    <view class="today-title">
+      今日已确认 <text class="strong">{{currentFamily.todayDone}}</text> / {{currentFamily.todayTotal}} 项
+    </view>
+    <view class="today-ok">
+      ✔ 今天照护情况良好
+    </view>
+  </view>
+</view>
+
+<!-- 执行率 -->
+<view class="section card">
+  <view class="section-title">近7天执行率</view>
+
+  <view class="progress-item">
+    <view class="label">吃降压药</view>
+    <view class="progress-bar">
+      <view class="progress" style="width: {{currentFamily.medRate}}%"></view>
+    </view>
+    <view class="percent">{{currentFamily.medRate}}%</view>
+  </view>
+
+  <view class="progress-item">
+    <view class="label">测血压</view>
+    <view class="progress-bar">
+      <view class="progress blue" style="width: {{currentFamily.bpRate}}%"></view>
+    </view>
+    <view class="percent">{{currentFamily.bpRate}}%</view>
+  </view>
+
+  <view class="care-days">
+    💚 已连续照护 {{currentFamily.careDays}} 天 ❤️
+  </view>
+</view>
+
+<!-- 查看统计 -->
+<view class="section card">
+  <view class="detail-row">
+    <text>吃降压药</text>
+    <text class="percent green">{{currentFamily.medRate}}%</text>
+  </view>
+  <view class="detail-row">
+    <text>测血压</text>
+    <text class="percent green">{{currentFamily.bpRate}}%</text>
+  </view>
+
+  <view class="detail-btn" bindtap="goDetail">
+    查看详细统计 >
+  </view>
 </view>

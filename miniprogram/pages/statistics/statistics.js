@@ -1,30 +1,46 @@
 Page({
   data: {
-    completionRate: 0,
-    streakDays: 0,
-    totalReminders: 0,
-    familyId: ''
+    currentId: 1,
+    familyList: [
+      {
+        id: 1,
+        name: '爸爸',
+        age: 75,
+        avatar: '/assets/avatar_male.png',
+        status: 'good',
+        todayDone: 2,
+        todayTotal: 3,
+        medRate: 91,
+        bpRate: 85,
+        careDays: 18
+      },
+      {
+        id: 2,
+        name: '妈妈',
+        age: 72,
+        avatar: '/assets/avatar_female.png'
+      },
+      {
+        id: 3,
+        name: '岳父',
+        age: 70,
+        avatar: '/assets/avatar_male.png'
+      }
+    ]
   },
 
-  onLoad(options) {
-    this.setData({ familyId: options.familyId });
-    this.calculateStats();
+  onSelectFamily(e) {
+    const id = e.currentTarget.dataset.id
+    this.setData({ currentId: id })
   },
 
-  calculateStats() {
-    const reminders = wx.getStorageSync('reminders') || [];
-    const today = new Date().toISOString().split('T')[0];
-    const completedToday = reminders.filter(r => r.familyId == this.data.familyId && r.date == today && r.status === 'completed').length;
-    const totalToday = reminders.filter(r => r.familyId == this.data.familyId && r.date == today).length;
+  get currentFamily() {
+    return this.data.familyList.find(i => i.id === this.data.currentId)
+  },
 
-    const completionRate = totalToday > 0 ? Math.round((completedToday / totalToday) * 100) : 0;
-    const streakDays = 3; // 模拟连续天数
-    const totalReminders = reminders.filter(r => r.familyId == this.data.familyId).length;
-
-    this.setData({
-      completionRate,
-      streakDays,
-      totalReminders
-    });
+  goDetail() {
+    wx.navigateTo({
+      url: '/pages/statistics/index'
+    })
   }
-});
+})
