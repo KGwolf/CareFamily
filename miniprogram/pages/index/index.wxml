@@ -1,73 +1,40 @@
-<view class="page">
+
   <!-- 顶部状态栏占位（适配小程序胶囊） -->
   <navigation-bar id="navigationBar" title="关爱家人小助手" back="{{false}}" color="black" background="#FFF"></navigation-bar>
  
-
-  <!-- 顶部家庭关怀卡片 -->
-  <view class="top-card">
-      <text class="card-title">今日·家庭关怀</text>
-      <view class="stats-row">
-        <view class="stat-item">
-          <image class="stat-img" src="/images/family.png" mode="aspectFit"></image>
-          <text class="stat-text">{{todayFamilyCount}}位家人</text>
-        </view>
-        <view class="stat-item">
-          <image class="stat-img" src="/images/todo.png" mode="aspectFit"></image>
-          <view class="stat-num-wrap">
-            <text class="stat-num">{{totalSummary.uncompleted}}</text>
-            <text class="stat-text">项待执行</text>
-          </view>
-        </view>
-        <view class="stat-item">
-          <image class="stat-img" src="/images/done.png" mode="aspectFit"></image>
-          <view class="stat-num-wrap">
-            <text class="stat-num">{{totalSummary.completed}}</text>
-            <text class="stat-text">项已完成</text>
-          </view>
-        </view>
-      </view>
+  <view class="container">
+  <view class="stats-card">
+    <view class="circle-text">85%</view>
+    <view class="stats-info">
+      <view class="stats-title">今日关爱进度</view>
+      <view class="stats-detail">还有 2 项未完成</view>
     </view>
-    <text class="section-title">今日·待执行事项</text>
+  </view>
 
-
-  <!-- 核心：直接用 view 包裹列表，不再需要 scroll-view -->
-  <scroll-view
-    class="scroll-area"
-    scroll-y
-    show-scrollbar="{{false}}"
-  >
-   <!-- 空状态提示：没有数据时显示 -->
-<view class="empty-tip" wx:if="{{!familyReminderList.length}}">
-  <text>今日暂无待执行事项~</text>
-</view>
- <view class="task-card" wx:for="{{familyReminderList}}" wx:key="familyIndex">
-        <view class="card-header">
-          
-          <image 
-  class="avatar" 
-  src="{{ item.gender === '女' ? '/images/mom_avatar.png' : '/images/dad_avatar.png' }}" 
-  mode="aspectFill">
-</image>
-          <view class="name-wrap">
-            <text class="name-text">{{item.name}}</text>
-            <text class="age-text">({{item.age}}岁)</text>
-          </view>
-        </view>
-        <view class="task-list">
-          <view class="task-item" wx:for="{{item.reminderList}}" wx:key="reminderIndex" wx:for-item="reminder" >
-            <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-            <text class="time-text">{{reminder.remindTime}}</text>
-            <text class="task-text">{{reminder.content}}</text>
-
-            <view class="custom-checkbox" bindtap="toggleReminder" data-reminder-id="{{reminder.id}}">
-              <image mode="aspectFit" class="checkbox-img" wx:if="{{reminder.checked}}" src="/images/checked.png" />
-              <image  mode="aspectFit" class="checkbox-img" wx:else src="/images/unchecked.png" />
-            </view>
-            
-          </view>
-        </view>
-      </view>
+  <scroll-view scroll-x class="avatar-scroll">
+    <view class="avatar-item active">
+      <view class="avatar-img"></view> <text>全部</text>
+    </view>
+    <view class="avatar-item">
+      <view class="avatar-img"></view>
+      <text>爸爸</text>
+    </view>
+    <view class="avatar-item">
+      <view class="avatar-img"></view>
+      <text>旺财</text>
+    </view>
   </scroll-view>
+
+  <view class="task-section">
+    <view class="task-card">
+      <view class="task-icon">💊</view>
+      <view class="task-content">
+        <view class="task-name">餐后降压药</view>
+        <view class="task-desc">10:00 · 爸爸</view>
+      </view>
+      <button class="btn-check">打卡</button>
+    </view>
+  </view>
 </view>
 
   

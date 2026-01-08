@@ -31,7 +31,7 @@
       },
       {
         "pagePath": "pages/statistics/statistics",
-        "text": "关怀",
+        "text": "统计",
         "iconPath": "/images/chart.png",
         "selectedIconPath": "/images/chart-active.png"
       },

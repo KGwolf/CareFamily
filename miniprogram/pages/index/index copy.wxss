@@ -1,0 +1,202 @@
+/* 页面容器 */
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f7f7f7;
+  padding: 20rpx;
+  box-sizing: border-box;
+  background-color: #f5f5f5; /* 页面背景色 */
+  min-height: 100vh; /* 确保即使内容少，背景也能铺满 */
+}
+/* 顶部卡片：固定高度，不参与自适应 */
+.top-card {
+  width: 100%;
+  padding: 20rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.08);
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+  margin-top: 20rpx;
+}
+
+/* 顶部卡片内部样式（保持原有样式不变，仅补充） */
+.card-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+.stats-row {
+  display: flex;
+  justify-content: space-between;
+}
+.stat-item {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.stat-img {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+}
+.stat-text {
+  font-size: 24rpx;
+  color: #666;
+}
+.stat-num-wrap {
+  display: flex;
+  align-items: center;
+}
+.stat-num {
+  font-size: 28rpx;
+  color: #e63946;
+  font-weight: bold;
+  margin-right: 5rpx;
+}
+
+/* 待执行数字颜色 */
+.stat-item:nth-child(2) .stat-num {
+  color: #FF7D00;
+}
+
+/* 已完成数字颜色 */
+.stat-item:nth-child(3) .stat-num {
+  color: #00C48C;
+}
+
+.stat-text {
+  font-size: 24rpx;
+  color: #666666;
+}
+
+/* task-section 内部样式（保持原有样式不变，仅补充） */
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  display: block;
+  margin-left: 22rpx;
+}
+
+/* 列表标题 */
+.list-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+/* 滚动区域 */
+.scroll-area {
+  flex: 1;              /* 核心 */
+  overflow: hidden;     /* 防止 page 滚动 */
+}
+/* 空状态提示 */
+.empty-tip {
+  height: 100%; /* 关键：填充scroll-view的高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 28rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 1rpx 5rpx rgba(0,0,0,0.06);
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+
+/* 事项卡片 */
+.task-card {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10rpx;
+  box-shadow: 0 1rpx 5rpx rgba(0,0,0,0.06);
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+.name-wrap {
+  display: flex;
+  align-items: center;
+}
+.name-text {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-right: 10rpx;
+}
+.age-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 事项列表 */
+.task-list {
+  width: 100%;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.task-item:last-child {
+  margin-bottom: 0;
+}
+
+.icon-clock {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 15rpx;
+}
+
+.time-text {
+  font-size: 26rpx;
+  color: #999;
+  margin-right: 15rpx;
+  width: 120rpx;
+}
+.task-text {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+
+/* 右侧自定义复选框容器 */
+.custom-checkbox {
+  width: 60rpx; /* 设置一个固定的点击区域大小 */
+  height: 60rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 复选框图片样式 */
+.checkbox-img {
+  width: 100%;
+  height: 100%;
+}

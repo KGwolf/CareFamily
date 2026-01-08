@@ -1,6 +1,5 @@
 <view class="page">
 <navigation-bar title="家人详情" back="{{true}}" color="black" background="#FFF"></navigation-bar>
-<!-- pages/family/detail.wxml -->
 
 
 <!-- 家人信息卡 -->
@@ -38,11 +37,12 @@
 </view>
 
 <!-- 提醒规则列表 -->
-<!-- 核心：直接用 view 包裹列表，不再需要 scroll-view -->
+
   <scroll-view
       class="scroll-area"
       scroll-y
       show-scrollbar="{{false}}"
+     
     >
         <!-- 空状态提示：没有数据时显示 -->
       <view class="empty-tip" wx:if="{{!familyReminderList.length}}">
@@ -51,7 +51,10 @@
 
       <!-- 家人卡片（循环渲染 + 滑动事件） -->
       <block wx:for="{{familyReminderList}}" wx:key="id" wx:for-item="reminder">
-        <van-swipe-cell right-width="{{180}}" bind:close="onSwipeClose" >
+        <van-swipe-cell bind:touchstart="swipeTouchStart"
+      bind:touchmove="swipeTouchMove"
+      bind:close="onSwipeClose"
+      bind:open="onSwipeOpen"  right-width="{{180}}" bind:close="onSwipeClose" >
           <view class="slide-wrap" data-index="{{index}}" bindtap="onEditReminder" data-item="{{reminder}}">
             <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
             <view class="reminder-left">
@@ -64,24 +67,13 @@
           </view>
 
           <view slot="right" class="swipe-btn-wrapper">
-              <button class="btn edit" bindtap="handleEdit" data-item="{{reminder}}">编辑提醒</button>
-              <button class="btn delete" bindtap="handleDelete" data-item="{{reminder}}">删除提醒</button>
+              <!-- <button class="btn edit" bindtap="handleEdit" data-item="{{reminder}}">编辑提醒</button> -->
+              <button class="btn delete" bindtap="handleDeleteReminder" data-item="{{reminder}}">删除提醒</button>
           </view>
         </van-swipe-cell>
     </block>
 
-      <!-- <view class="card reminder-item" bindtap="onEditReminder" wx:for="{{familyReminderList}}" wx:for-item="reminder">
-        <image class="icon-clock" src="/images/clock.png" mode="aspectFit"></image>
-        <view class="reminder-left">
-          <view class="time">{{reminder.remindTime}}</view>
-          <view class="cycle">{{reminder.frequency == "daily" ? "每日":reminder.customDate}}</view>
-        </view>
-        <view class="reminder-right">
-          <view class="content">{{reminder.content}}</view>
-        </view>
-      </view> -->
     </scroll-view>
-
      <!-- 底部间距：添加这一行 -->
   <view class="list-bottom-space"></view>
 </view>

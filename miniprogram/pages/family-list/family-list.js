@@ -33,8 +33,11 @@ Page({
 
    // 编辑按钮点击
    handleEdit(e) {
-     const item = e.currentTarget.dataset.item;
-     wx.showToast({ title: `编辑${item.name}` });
+    const familyItem = e.currentTarget.dataset.item;
+      // 跳转到添加提醒页面，携带家人信息
+    wx.navigateTo({
+      url: `/pages/family-detail/family-detail?familyId=${familyItem.id}&familyName=${familyItem.name}`
+    });
    },
  
    // 添加提醒按钮点击
@@ -47,18 +50,6 @@ Page({
    },
  
   // ========== 家人操作功能 ==========
-  // 1. 编辑家人资料
-  handleEdit(e) {
-    const familyItem = e.currentTarget.dataset.item;
-    // 跳转到编辑页面，携带家人ID
-    wx.navigateTo({
-      url: `/pages/edit-family/edit-family?id=${familyItem.id}`
-    });
-
-    // 跳转前复位所有卡片偏移
-    const slideOffset = this.data.slideOffset.map(() => 0);
-    this.setData({ slideOffset });
-  },
 
   // 2. 为家人添加提醒事项
   handleAddTip(e) {

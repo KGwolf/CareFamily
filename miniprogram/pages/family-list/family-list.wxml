@@ -10,7 +10,7 @@
   <!-- 提示图标+文字 -->
   <view class="swipe-tip">
     <icon type="info" size="26rpx" color="#42b983" />
-    <text class="tip-text">左滑列表项可以操作</text>
+    <text class="tip-text">左滑列表项可以操作,点击列表项进入详情</text>
   </view>
   </view>
   
@@ -19,7 +19,7 @@
   <view class="family-list">
     <!-- 家人卡片（循环渲染 + 滑动事件） -->
     <block wx:for="{{familyList}}" wx:key="id">
-      <van-swipe-cell right-width="{{270}}" bind:close="onSwipeClose" >
+      <van-swipe-cell  right-width="{{270}}" bind:close="onSwipeClose" >
         <view class="slide-wrap" data-index="{{index}}" bindtap="handleGoFamilyDetail" data-item="{{item}}">
           <!-- 家人卡片（主内容，绑定触摸事件） -->
           <view 
@@ -48,7 +48,7 @@
 
         <!-- 右侧按钮区（左滑时露出） -->
         <view slot="right" class="swipe-btn-wrapper">
-            <button class="btn edit" bindtap="handleEdit" data-item="{{item}}">编辑家人</button>
+            <button class="btn edit" bindtap="handleEdit" data-item="{{item}}">家人详情</button>
             <button class="btn remind" bindtap="handleRemind" data-item="{{item}}">添加提醒</button>
             <button class="btn delete" bindtap="handleDelete" data-item="{{item}}">删除家人</button>
         </view>
